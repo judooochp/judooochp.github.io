@@ -1,7 +1,7 @@
 body {
   background-color: #ffffff;
   color: #003366;
-  fond-family: Verdana, Arial, sans-serif;
+  font-family: Verdana, Arial, sans-serif;
 }
 
 h1 {
@@ -20,13 +20,13 @@ dt {
   color: #5280c5;
   font-size: 1.1em;
   font-weight: bold;
-  font-family: "Georgia", "Times New Roman", serif;
+  font-family: Georgia, "Times New Roman", serif;
 }
 
 .category {
   font-weight: bold;
   color: #5380c5;
-  font-family: "Georgia", "Times New Roman", serif;
+  font-family: Georgia, "Times New Roman", serif;
 }
  
 footer {
