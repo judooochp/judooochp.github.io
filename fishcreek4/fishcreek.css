@@ -4,14 +4,17 @@ body {
   font-family: Verdana, Arial, sans-serif;
 }
 
-h1 {
-  background-image: "fishcreeklogo.gif", center, no-repeat;
+header {
   background-color: #003366;
   color: #F0F0F0;
   font-family: Georgia, "Times New Roman", serif;
+  text-align: center;
+  background-image: "fishcreeklogo.gif" center no-repeat;
+}
+
+h1 {
   line-height: 250%;
   text-indent: 1em;
-  text-align: center;
 }
 
 nav {
