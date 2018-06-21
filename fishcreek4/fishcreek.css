@@ -18,6 +18,8 @@ h1 {
   background-image: url("fishcreeklogo.gif");
   background-position: center;
   background-repeat: no-repeat;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
 }
 
 nav {
