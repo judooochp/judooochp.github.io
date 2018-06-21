@@ -17,7 +17,7 @@ h1 {
   background-repeat: no-repeat;
   line-height: 250%;
   text-indent: 1em;
-  -webkit-margin-after: 0;
+  margin-bottom: 0;
 }
 
 nav {
