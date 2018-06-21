@@ -43,6 +43,10 @@ dt {
   font-family: Georgia, "Times New Roman", serif;
 }
 
+dd {
+  text-indent: 1em;
+}
+
 .category {
   font-weight: bold;
   color: #5380c5;
