@@ -9,7 +9,9 @@ header {
   color: #F0F0F0;
   font-family: Georgia, "Times New Roman", serif;
   text-align: center;
-  background-image: "fishcreeklogo.gif" center no-repeat;
+  background-image: url(fishcreeklogo.gif);
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 h1 {
