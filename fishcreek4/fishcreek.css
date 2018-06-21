@@ -19,6 +19,11 @@ header {
   background-repeat: no-repeat;
 }
 
+h1 {
+  line-height: 250%;
+  text-indent: 1em;
+}
+
 nav {
   font-weight: bold;
   text-align: center;
