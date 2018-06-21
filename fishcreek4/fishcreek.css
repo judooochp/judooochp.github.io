@@ -9,17 +9,9 @@ header {
   color: #F0F0F0;
   font-family: Georgia, "Times New Roman", serif;
   text-align: center;
-}
-
-h1 {
-  line-height: 250%;
-  margin-top: 0;
-  text-indent: 1em;
   background-image: url("fishcreeklogo.gif");
   background-position: center;
   background-repeat: no-repeat;
-  -webkit-margin-before: 0;
-  -webkit-margin-after: 0;
 }
 
 nav {
