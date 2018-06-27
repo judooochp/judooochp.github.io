@@ -18,6 +18,9 @@ h1 {
   line-height: 250%;
   text-indent: 1em;
   margin-bottom: 0;
+  text-indent: 100%;
+  overflow: hidden;
+  whitespace: nowrap;
 }
 
 nav {
