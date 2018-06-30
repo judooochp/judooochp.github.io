@@ -201,7 +201,7 @@ header, nav, main, footer {
     padding-left: 1em;
   }
   
-  category {
+  .category {
     text-shadow: none;
   }
   
