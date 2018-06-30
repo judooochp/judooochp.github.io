@@ -2,6 +2,122 @@
   box-sizing: border-box;
 }
 
+body {
+  background-image: url("gradientblue.jpg");
+  background-repeat: repeat-x;
+  background-color: #5280c5;
+  color: #003366;
+  font-family: Verdana, Arial, sans-serif;
+}
+
+header {
+  background-color: #000066;
+  background-image: url("bigfish.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #F0F0F0;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3em;
+  padding: 0.2em;
+  text-shadow: 2px 2px 2px #cccccc;
+  line-height: 250%;
+  margin-bottom: 0;
+}
+
+nav {
+  float: left;
+  width: 180px;
+  font-weight: bold;
+  padding: 5px;
+}
+
+nav ul {
+  list-style-position: outside;
+  list-style-type: none;
+}
+
+li a {
+  text-decoration: none;
+}
+
+nav a:link {
+  color: #0000cc;
+}
+
+nav a:visited {
+  color: #5280c5;
+}
+
+nav a:hover {
+  color: #3262a3;
+}
+
+main {
+  padding-left: 2em;
+  padding-right: 2em;
+  margin-left: 180px;
+  background-color: #fff;
+  border: 1px solid #aec3e3;
+}
+
+dt {
+  color: #5280c5;
+  font-size: 1.1em;
+  font-weight: bold;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.category {
+  font-weight: bold;
+  color: #5380c5;
+  font-family: Georgia, "Times New Roman", serif;
+  text-shadow: 1px 1px 1px #667;
+}
+
+img {
+  border: none;
+}
+
+.center {
+  text-align: center;
+}
+
+.indent {
+  text-indent: 1em;
+}
+
+footer {
+  font-size: 0.7em;
+  font-style: italic;
+  text-align: center;
+  background-color: #aec3e3;
+  padding: 1em;
+  margin-left: 180px;
+}
+
+#wrapper {
+  min-width: 700px;
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #f0f0f0;
+}
+
+#mobile {
+  display: none;
+}
+
+#desktop {
+  display: inline;
+}
+
+header, nav, main, footer {
+  display: block;
+}
+
 @media only screen and (max-width: 1024px) {
     
   body {
@@ -123,120 +239,4 @@
     display: none;
   }
   
-}
-
-body {
-  background-image: url("gradientblue.jpg");
-  background-repeat: repeat-x;
-  background-color: #5280c5;
-  color: #003366;
-  font-family: Verdana, Arial, sans-serif;
-}
-
-header {
-  background-color: #000066;
-  background-image: url("bigfish.gif");
-  background-position: center;
-  background-repeat: no-repeat;
-  color: #F0F0F0;
-  text-align: center;
-}
-
-h1 {
-  font-size: 3em;
-  padding: 0.2em;
-  text-shadow: 2px 2px 2px #cccccc;
-  line-height: 250%;
-  margin-bottom: 0;
-}
-
-nav {
-  float: left;
-  width: 180px;
-  font-weight: bold;
-  padding: 5px;
-}
-
-nav ul {
-  list-style-position: outside;
-  list-style-type: none;
-}
-
-li a {
-  text-decoration: none;
-}
-
-nav a:link {
-  color: #0000cc;
-}
-
-nav a:visited {
-  color: #5280c5;
-}
-
-nav a:hover {
-  color: #3262a3;
-}
-
-main {
-  padding-left: 2em;
-  padding-right: 2em;
-  margin-left: 180px;
-  background-color: #fff;
-  border: 1px solid #aec3e3;
-}
-
-dt {
-  color: #5280c5;
-  font-size: 1.1em;
-  font-weight: bold;
-  font-family: Georgia, "Times New Roman", serif;
-}
-
-.category {
-  font-weight: bold;
-  color: #5380c5;
-  font-family: Georgia, "Times New Roman", serif;
-  text-shadow: 1px 1px 1px #667;
-}
-
-img {
-  border: none;
-}
-
-.center {
-  text-align: center;
-}
-
-.indent {
-  text-indent: 1em;
-}
-
-footer {
-  font-size: 0.7em;
-  font-style: italic;
-  text-align: center;
-  background-color: #aec3e3;
-  padding: 1em;
-  margin-left: 180px;
-}
-
-#wrapper {
-  min-width: 700px;
-  width: 80%;
-  margin-right: auto;
-  margin-left: auto;
-  background-color: #f0f0f0;
-}
-
-#mobile {
-  display: none;
-}
-
-#desktop {
-  display: inline;
-}
-
-header, nav, main, footer {
-  display: block;
 }
