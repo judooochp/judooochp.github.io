@@ -1,0 +1,71 @@
+wrapper, header, brand, nav, main, footer {
+    display: block;
+}
+
+wrapper {
+    background-color: #eef;
+    color: #338;
+    font-size: 1em;
+    height: 100%;
+    padding: 20px;
+}
+
+svg, img {
+    width: 75px;
+    margin-right: 100px;
+}
+
+h2 {
+    display: inline-block;
+    font-family: Arial, sans-serif;
+}
+
+ul, li {
+    list-style: none;
+    padding: 0;
+}
+
+a {
+    color: #0a0;
+}
+
+nav li {
+    display: inline-block;
+    padding-right: 2em;
+}
+
+nav a {
+    text-decoration: none;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+}
+
+wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+tr:first-child td {
+    border-bottom: 1px solid #ddd;
+}
+
+td {
+    margin: 0;
+    width: 110px;
+    font-family: "Times New Roman", serif;
+    border-left: 1px solid #ddd;
+    padding-left: 5px;
+}
+
+td:first-child {
+    border: none;
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.disclaimer {
+    font-size: 0.6em;
+}
