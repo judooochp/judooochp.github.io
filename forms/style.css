@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+wrapper, header, main, footer {
+  display: block;
+}
+
+wrapper {
+  padding: 0.2em;
+  margin: 20px auto;
+  max-width: 500px;
+  background-color: #dd7;
+}
+
+header {
+  text-align: center;
+}
+
+h1 {
+  margin: 20px;
+}
+
+form {
+  text-align: center;
+}
+
+label {
+  display: inline-block;
+  width: 150px;
+  text-align: right;
+}
+
+input {
+  border: 1px solid #aaa;
+}
+
+#submit {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0.2em;
+}
+
+footer {
+  margin: 20px;
+  text-align: center;
+}
