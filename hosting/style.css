@@ -10,9 +10,13 @@ wrapper {
     padding: 20px;
 }
 
+brand {
+  text-align: center;
+}
+
 svg, img {
-    width: 75px;
-    margin-right: 100px;
+    width: 50px;
+    margin: 5px;
 }
 
 h2 {
@@ -45,20 +49,21 @@ wrapper {
     margin: 0 auto;
 }
 
-tr:first-child td {
-    border-bottom: 1px solid #ddd;
-}
-
 td {
     margin: 0;
     width: 110px;
     font-family: "Times New Roman", serif;
-    border-left: 1px solid #ddd;
+    border-left: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
     padding-left: 5px;
 }
 
 td:first-child {
-    border: none;
+    border-left: none;
+}
+
+tr:last-child td {
+    border-bottom: none;
 }
 
 footer {
