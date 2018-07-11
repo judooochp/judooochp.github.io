@@ -1,0 +1,178 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+wrapper, main, header, nav, footer {
+  display: block;
+}
+
+body {
+    max-width: 700px;
+    margin: 10px auto;
+    background-color: #111;
+    color: #fff;
+    font-family: sans-serif;
+    text-shadow: 0 0 8px #000;
+}
+
+header {
+    background-image: url("img/bgsmall.jpg");
+    background-repeat: no-repeat;
+    height: 141px;
+    text-align: center;
+}
+
+header nav {
+    margin-top: 72px;
+}
+
+header nav a {
+  color: #fff;
+}
+
+header nav a:hover {
+  color: #ddd;
+}
+
+main {
+    padding: 10px 10px 10px;
+    background-image: url("img/gradient.jpg");
+    background-repeat: no-repeat;
+    background-color: #000;
+}
+
+main ul {
+    list-style: none;
+}
+
+main ul li {
+    margin-bottom: 1em;
+}
+
+main ul li a {
+  color: #ddd;
+}
+
+main ul li a:hover {
+  color: #fff;
+}
+
+h1 {
+    font-size: 2em;
+    text-shadow: 2px 2px 2px #555;
+    padding: 0.2em;
+}
+
+h2 {
+    font-size: 1.5em;
+    padding: 0.2em;
+}
+
+h3 {
+    margin-left: 4em;
+    padding: 0.2em;
+}
+
+a {
+    color: #ddd;
+    font-family: Courier, monospace;
+}
+
+
+nav a, footer a {
+    text-decoration: none;
+}
+
+p a {
+    font-family: sans-serif;
+}
+
+a:hover {
+    color: #ddd;
+}
+
+nav ul {
+    list-style: none;
+    list-style-image: none;
+    list-style-position: inside;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    position: relative;
+    display: inline;
+    position: relative;
+    margin: 0;
+    margin-right: 10px;
+    padding: 5px;
+    text-align: left;
+}
+
+nav ul li ul {
+    position: relative;
+    display: none;
+}
+
+nav ul li.sub:hover ul {
+    position: absolute;
+    display: block;
+    left: 0;
+    z-index: 10;
+}
+
+nav ul li.sub ul li {
+    display: list-item;
+    line-height: 1.2em;
+    text-indent: 0;
+    background-color: #000;
+}
+
+footer {
+    text-align: center;
+    background-color: #444;
+    padding: 10px 0;
+}
+
+footer a:hover {
+  color: #fff;
+}
+
+footer p {
+    font-size: 0.6em;
+}
+
+.output {
+    display: none;
+}
+
+.center {
+    text-align: center;
+}
+
+div {
+    display: inline-block;
+    text-align: center;
+}
+
+td {
+    text-align: left;
+    vertical-align: top;
+}
+
+.arc {
+    width: 50px;
+}
+
+p img.right {
+    float: right;
+    width: 170px;
+    margin-left: 10px;
+}
+
+p img.left {
+    float: left;
+    width: 200px;
+    margin-right: 10px;
+}
