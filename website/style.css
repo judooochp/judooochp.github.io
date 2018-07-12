@@ -1,10 +1,11 @@
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
 }
 
 wrapper, main, header, nav, footer {
-  display: block;
+    display: block;
 }
 
 body {
@@ -14,7 +15,6 @@ body {
     color: #fff;
     font-family: sans-serif;
     text-shadow: 0 0 8px #000;
-    font-size: 1em;
 }
 
 header {
@@ -29,7 +29,7 @@ header nav {
 }
 
 header nav a {
-  color: #fff;
+    color: #fff;
 }
 
 header nav a:hover {
@@ -77,10 +77,6 @@ h2 {
 h3 {
     margin-left: 4em;
     padding: 0.2em;
-}
-
-p {
-   font-size: 1em;
 }
 
 a {
