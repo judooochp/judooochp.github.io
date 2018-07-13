@@ -13,7 +13,7 @@ body {
     margin: 10px auto;
     background-color: #222;
     color: #fff;
-    font-family: sans-serif;
+    font-family: "Arial", sans-serif;
     font-size: 100%;
 }
 
@@ -85,7 +85,7 @@ h3 {
 
 a {
     color: #ddd;
-    font-family: Courier, monospace;
+    font-family: "Courier New", monospace;
 }
 
 
@@ -94,7 +94,7 @@ nav a, footer a {
 }
 
 p a {
-    font-family: sans-serif;
+    font-family: "Arial", sans-serif;
 }
 
 a:hover {
