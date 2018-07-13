@@ -9,7 +9,7 @@ wrapper, main, header, nav, footer {
 }
 
 body {
-    max-width: 700px;
+    width: 700px;
     margin: 10px auto;
     background-color: #222;
     color: #fff;
