@@ -32,6 +32,11 @@ header nav {
     margin: 0 auto;
 }
 
+a {
+    color: #ddd;
+    font-family: "Courier New", monospace;
+}
+
 header nav a {
     color: #fff;
 }
@@ -81,11 +86,6 @@ h2 {
 h3 {
     margin-left: 4em;
     padding: 0.2em;
-}
-
-a {
-    color: #ddd;
-    font-family: "Courier New", monospace;
 }
 
 
