@@ -78,7 +78,7 @@ function subFirst(line) {
   var return_line = [];
   var sub = line[0];
   for (var i = 0; i < line.length; i++) {
-    return_line.push(Math.round((line[i] - sub), 2));
+    return_line.push(Number(line[i] - sub));
   }
   return return_line;
 }
@@ -87,7 +87,7 @@ function addRows(line) {
   var return_line = [];
   var last = 0;
   for (var i = 0; i < line.length; i++) {
-    last = Math.round(last + line[i], 2);
+    last = last + line[i];
     return_line.push(last);
   }
   return_line.unshift(0);
@@ -147,7 +147,7 @@ function processLine(line, corner1, corner2) {
 }
 
 function getMid(line) {
-  return line[Math.round(line.length / 2 - 0.5, 0)];
+  return line[Math.round(line.length / 2 - 0.5)];
 }
 
 function getElevations() {
@@ -169,7 +169,7 @@ function getElevations() {
 
   for (i; i < lineEnd; i++) {
     if (("meas" + i) in params) {
-      line1.push(params["meas" + i]);
+      line1.push(Number(params["meas" + i]));
     }
   }
 
@@ -185,7 +185,7 @@ function getElevations() {
 
   for (i; i < lineEnd; i++) {
     if (params["meas" + i]) {
-      line2.push(params["meas" + i]);
+      line2.push(Number(params["meas" + i]));
     }
   }
 
@@ -201,7 +201,7 @@ function getElevations() {
 
   for (i; i < lineEnd; i++) {
     if (params["meas" + i]) {
-      line3.push(params["meas" + i]);
+      line3.push(Number(params["meas" + i]));
     }
   }
 
@@ -215,7 +215,7 @@ function getElevations() {
 
   for (i; i < lineEnd; i++) {
     if (params["meas" + i]) {
-      line4.push(params["meas" + i]);
+      line4.push(Number(params["meas" + i]));
     }
   }
 
@@ -229,7 +229,7 @@ function getElevations() {
 
   for (i; i < lineEnd; i++) {
     if (params["meas" + i]) {
-      line5.push(params["meas" + i]);
+      line5.push(Number(params["meas" + i]));
     }
   }
 
@@ -243,7 +243,7 @@ function getElevations() {
 
   for (i; i < lineEnd; i++) {
     if (params["meas" + i]) {
-      line6.push(params["meas" + i]);
+      line6.push(Number(params["meas" + i]));
     }
   }
 
@@ -260,7 +260,7 @@ function getElevations() {
 
   for (i; i < lineEnd; i++) {
     if (params["meas" + i]) {
-      line7.push(params["meas" + i]);
+      line7.push(Number(params["meas" + i]));
     }
   }
 
@@ -277,7 +277,7 @@ function getElevations() {
 
   for (i; i < lineEnd; i++) {
     if (params["meas" + i]) {
-      line8.push(params["meas" + i]);
+      line8.push(Number(params["meas" + i]));
     }
   }
 
