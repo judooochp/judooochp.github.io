@@ -8,14 +8,14 @@
 	</head>
 	<body>
 		<header>
-            <h1>start a calibration</h1>
+            <h1>the moody method printer</h1>
 			<nav>
                 <ul>
                     <li><a href="index.html">home</a></li>
+                    <li><a href="start.html">start</a></li>
                     <li class="sub"><a href="moody.html">the moody method</a>
                         <ul class="sub">
                             <li><a href="prep.html">preparations</a></li>
-                            <li><a href="start.html">start</a></li>
                             <li><a href="interpret.html">calculating&nbsp;and&nbsp;interpreting</a></li>
                         </ul>
                     </li>
@@ -28,6 +28,10 @@
             <div style="vertical-align: top;">
                 <form name="plate" method="get" action="lines.html">
                     <table>
+                        <tr>
+                            <td><label>Customer:</label></td>
+                            <td><input type="text" maxlength="25" placeholder="your customer" name="cust" onchange="validateInputs();" required /></td>
+                        </tr>
                         <tr>
                             <td><label>identification no.:</label></td>
                             <td><input type="text" maxlength="25" placeholder="id#" name="id" onchange="validateInputs();" required /></td>

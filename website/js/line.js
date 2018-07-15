@@ -1,11 +1,9 @@
 function enableOutput() {
     document.getElementById("submit").disabled = false;
-    document.getElementById("submit").value = "let's get to it!";
+    document.getElementById("submit").value = "generate my maps!";
 }
 
 function disableOutput() { 
-    var i;
-    var outputs = document.getElementsByClassName("output");
     document.getElementById("submit").disabled = true;
     document.getElementById("submit").value = "we're not quite ready.";
 }
@@ -34,6 +32,7 @@ function parseURLParams(url) {
 function newInput(i) {
     var newInput = document.createElement("input");
         newInput.setAttribute("type", "number");
+        newInput.setAttribute("step", "0.01");
         newInput.setAttribute("name", "meas" + i);
         newInput.setAttribute("onchange", "validateInputs();");
         newInput.setAttribute("class", "arc");
@@ -42,61 +41,89 @@ function newInput(i) {
 }
 
 function newHiddenElement(id, params) {
-    /*******************
-    
-    THIS IS WHERE WE ARE STARTING!!!
-    
-    THE FUNCTION NEEDS TO ADD HIDDEN ELEMENTS THAT WILL END UP 
-    AS HEADER INFORMATION OR MATHEMATICAL INFORMATION IN THE CREATION OF OUR
-    CANVAS MAPS
-    
-    MUST GET THE INFORMATION FROM PARAMS AND PLACE IT IN THE ELEMENT WITH PROPER ATTRIBUTES, MUCH LIKE THE NEWINPUT() FUNCTION
-    
-    *******************/
+  
+    var newInput = document.createElement("input");
+        newInput.setAttribute("type", "hidden");
+        newInput.setAttribute("name", id);
+        newInput.setAttribute("value", params[id]);
     return newInput;
 }
 
-function populateLines() {
+function populateLines() {  
     var url = window.location.href;
     var params = parseURLParams(url);
     var i = 0;
-    
-    for (i; i < params["diagMeas"]; i++) {
-        
+    var lineEnd = Number(params["diagMeas"]);
+    for (i; i < lineEnd; i++) {   
         document.getElementById("line1").appendChild(newInput(i));
         document.getElementById("line1").appendChild(document.createElement("br"));
+    }
+    lineEnd += Number(params["diagMeas"]);
+    for (i; i < lineEnd; i++) {
         document.getElementById("line2").appendChild(newInput(i));
         document.getElementById("line2").appendChild(document.createElement("br"));
-        
-        if (i < params["lenMeas"]) {
-            document.getElementById("line3").appendChild(newInput(i));
-            document.getElementById("line3").appendChild(document.createElement("br"));
-            document.getElementById("line5").appendChild(newInput(i));
-            document.getElementById("line5").appendChild(document.createElement("br"));
-            document.getElementById("line8").appendChild(newInput(i));
-            document.getElementById("line8").appendChild(document.createElement("br"));
-        }
-        
-        if (i < params["widMeas"]) {
-            document.getElementById("line4").appendChild(newInput(i));
-            document.getElementById("line4").appendChild(document.createElement("br"));
-            document.getElementById("line6").appendChild(newInput(i));
-            document.getElementById("line6").appendChild(document.createElement("br"));
-            document.getElementById("line7").appendChild(newInput(i));
-            document.getElementById("line7").appendChild(document.createElement("br"));
-        }
+    }
+    lineEnd += Number(params["lenMeas"]);
+    for (i; i < lineEnd; i++) {
+        document.getElementById("line3").appendChild(newInput(i));
+        document.getElementById("line3").appendChild(document.createElement("br"));
+    }
+    lineEnd += Number(params["widMeas"]);
+    for (i; i < lineEnd; i++) {
+        document.getElementById("line4").appendChild(newInput(i));
+        document.getElementById("line4").appendChild(document.createElement("br"));
+    }
+    lineEnd += Number(params["lenMeas"]);
+    for (i; i < lineEnd; i++) {
+        document.getElementById("line5").appendChild(newInput(i));
+        document.getElementById("line5").appendChild(document.createElement("br"));
+    }
+    lineEnd += Number(params["widMeas"]);
+    for (i; i < lineEnd; i++) {
+        document.getElementById("line6").appendChild(newInput(i));
+        document.getElementById("line6").appendChild(document.createElement("br"));
+    }
+    lineEnd += Number(params["widMeas"]);
+    for (i; i < lineEnd; i++) {
+        document.getElementById("line7").appendChild(newInput(i));
+        document.getElementById("line7").appendChild(document.createElement("br"));
+    }
+    lineEnd += Number(params["lenMeas"]);
+    for (i; i < lineEnd; i++) {
+        document.getElementById("line8").appendChild(newInput(i));
+        document.getElementById("line8").appendChild(document.createElement("br"));
     }
     
-    document.getElementById("plate").appendChild(newHiddenElement("id"), params);
-    document.getElementById("plate").appendChild(newHiddenElement("mfr"), params);
-    document.getElementById("plate").appendChild(newHiddenElement("sn"), params);
-    document.getElementById("plate").appendChild(newHiddenElement("wid"), params);
-    document.getElementById("plate").appendChild(newHiddenElement("len"), params);
-    document.getElementById("plate").appendChild(newHiddenElement("grade"), params);
-    document.getElementById("plate").appendChild(newHiddenElement("north"), params);
-    document.getElementById("plate").appendChild(newHiddenElement("diagMeas"), params);
-    document.getElementById("plate").appendChild(newHiddenElement("lenMeas"), params);
-    document.getElementById("plate").appendChild(newHiddenElement("widMeas"), params);
+    document.getElementById("plate").appendChild(newHiddenElement("cust", params));
+    document.getElementById("plate").appendChild(newHiddenElement("id", params));
+    document.getElementById("plate").appendChild(newHiddenElement("mfr", params));
+    document.getElementById("plate").appendChild(newHiddenElement("sn", params));
+    document.getElementById("plate").appendChild(newHiddenElement("wid", params));
+    document.getElementById("plate").appendChild(newHiddenElement("len", params));
+    document.getElementById("plate").appendChild(newHiddenElement("grade", params));
+    document.getElementById("plate").appendChild(newHiddenElement("north", params));
+    document.getElementById("plate").appendChild(newHiddenElement("diagMeas", params));
+    document.getElementById("plate").appendChild(newHiddenElement("lenMeas", params));
+    document.getElementById("plate").appendChild(newHiddenElement("widMeas", params));
+  
+  
+  //  QUICK FILL-IN OF LINES FOR EASE OF PROGRAMMING
+  //  REMOVE THIS "FOR" AS SOON AS YOU'RE DONE
+  var inputs = document.getElementsByTagName("input");
+  var meas = [1.32, 0.90, 0.10, -1.43, 0.20, 0.07, 0.13, 0.10, 1.00, 0.87,  
+             2.50, 2.37, 2.50, 1.87, 3.40, 3.33, 2.77, 3.33, 3.57, 3.83, 
+             4.43, 4.53, 3.83, 3.00, 3.67, 4.60, 4.50, 5.30, 
+             7.80, 7.97, 7.50, 6.70, 6.77, 7.20, 
+             5.73, 5.40, 5.00, 4.67, 6.07, 6.00, 6.80, 7.17, 
+             -0.40, -1.47, -2.10, -1.60, -1.83, -2.00, 
+             11.93, 11.40, 10.10, 9.57, 9.23, 8.23, 
+             8.93, 8.47, 7.37, 6.23, 7.57, 7.60, 7.77, 8.23, ]
+  for (var o = 0; o < inputs.length; o++) {
+    if (inputs[o].getAttribute("type") == "number") {
+      inputs[o].value = meas[o];
+    }
+  }
+  enableOutput();
 }
 
 function validateInputs() {

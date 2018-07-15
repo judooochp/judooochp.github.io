@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     text-shadow: 0 0 8px #000;
+    box-sizing: border-box;
 }
 
 wrapper, main, header, nav, footer {
@@ -184,4 +185,38 @@ p img.left {
     float: left;
     width: 200px;
     margin-right: 10px;
+}
+
+input, select {
+    text-shadow: none;
+    width: 10em;
+    line-height: 1em;
+    border: none;
+    margin: 0.2em 0;
+    padding: 0.1em 0.2em;
+    border: none;
+    background-color: #fff;
+}
+
+input:hover, select:hover {
+  background-color: #ffb;
+}
+
+/* For Firefox */
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+/* Webkit browsers like Safari and Chrome */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+canvas {
+  background-color: #fff;
+  padding: 0;
+  margin: 0;
+  width: 100%;
 }

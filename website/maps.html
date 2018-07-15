@@ -31,14 +31,14 @@
 	</head>
 	<body>
 		<header>
-            <h1>maps</h1>
+            <h1>the moody method printer</h1>
 			<nav>
                 <ul>
                     <li><a href="index.html">home</a></li>
+                    <li><a href="start.html">start</a></li>
                     <li class="sub"><a href="moody.html">the moody method</a>
                         <ul class="sub">
                             <li><a href="prep.html">preparations</a></li>
-                            <li><a href="start.html">start</a></li>
                             <li><a href="interpret.html">calculating&nbsp;and&nbsp;interpreting</a></li>
                         </ul>
                     </li>
@@ -55,112 +55,36 @@
             <p class="no-display">
             When printing, select the "Shrink to Fit" or "Fit to Page" option.
             </p>
+            <br />
 
-            <canvas id="sPlate" width="700" height="950" style="border:1px solid #ccc; margin: 10px;">Your browser does not support HTML5 Canvas elements. Perhaps <a href="chrome.google.com">upgrade?</a></canvas>
+            <canvas id="sPlate" width="700" height="950">Your browser does not support HTML5 Canvas elements. Perhaps <a href="chrome.google.com">upgrade?</a></canvas>
             <br />
             <br />
             <h2>numeric elevations</h2>
             <canvas id="sPlateNum" width="700" height="950">Your browser does not support HTML5 Canvas elements. Perhaps <a href="chrome.google.com">upgrade?</a></canvas>
             <script type="text/javascript">
             <!--
-                getElevations();
+var params = parseURLParams(window.location.href);
+var elevations = getElevations();
+              
 var canvas = document.getElementById("sPlate");
 var context = canvas.getContext("2d");
 var canvasNum = document.getElementById("sPlateNum");
 var contextNum = canvasNum.getContext("2d");
-var Line1 = [
-        31,
-        49,
-        58,
-        51,
-        13,
-        8,
-        0,
-        -6,
-        -14,
-        -3,
-        6,
-        23,
-        31];
-var Line2 = [
-        60,
-        47,
-        31,
-        18,
-        -8,
-        -3,
-        0,
-        -8,
-        -5,
-        4,
-        17,
-        45,
-        60];
-var Line3 = [
-        60,
-        61,
-        63,
-        51,
-        23,
-        8,
-        12,
-        14,
-        31];
-var Line4 = [
-        31,
-        52,
-        75,
-        89,
-        87,
-        87,
-        95,
-        89,
-        60];
-var Line5 = [
-        60,
-        54,
-        42,
-        21,
-        -6,
-        -6,
-        -7,
-        9,
-        31];
-var Line6 = [
-        31,
-        58,
-        64,
-        57,
-        60,
-        58,
-        53,
-        58,
-        60];
-var Line7 = [
-        23,
-        61,
-        87,
-        88,
-        78,
-        61,
-        24,
-        12,
-        -6];
-var Line8 = [
-        87,
-        107,
-        117,
-        106,
-        72,
-        64,
-        57,
-        54,
-        60];
+var Line1 = doRound(elevations[0]);
+var Line2 = doRound(elevations[1]);
+var Line3 = doRound(elevations[2]);
+var Line4 = doRound(elevations[3]);
+var Line5 = doRound(elevations[4]);
+var Line6 = doRound(elevations[5]);
+var Line7 = doRound(elevations[6]);
+var Line8 = doRound(elevations[7]);
+              
 var zRot = 15;
 var xRot = 45;
-var minElev = -14;
-var maxElev = 117;
-var flatness = 131;
+var minElev = getMin(elevations);
+var maxElev = getMax(elevations);
+var flatness = maxElev - minElev;
 var xSize = 700;
 var ySize = 950;
 var pWid = Line4.length - 1;
@@ -179,6 +103,10 @@ var y;
 var xPrime;
 var yPrime;
 var i;
+
+var d = new Date();
+var mon = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];              
+
 function getBaseline() {
     if (pWid > 12 && maxElev > 999) {
         if ((i % 2) > 0) {
@@ -196,49 +124,33 @@ function drawMap() {
     context.textAlign = "left";
     contextNum.font = "12pt Arial";
     contextNum.textAlign = "left";
-    context.fillText("Customer: Customer", 0.06 * xSize, 0.06 * ySize * 0.25);
-    context.fillText("Plate ID: PlateID", 0.06 * xSize, 0.06 * ySize * 0.5);
-    context.fillText("Plate SN: 2017-10-23", 0.06 * xSize, 0.06 * ySize * 0.75);
-    context.fillText("Plate Mfr: Rahn", 0.06 * xSize, 0.06 * ySize * 1);
-    context.fillText("Width: 36", 0.06 * xSize, 0.06 * ySize * 1.25);
-    context.fillText("Length: 36", 0.06 * xSize, 0.06 * ySize * 1.5);
+    context.fillText("Customer: " + params["cust"], 0.06 * xSize, 0.06 * ySize * 0.25);
+    context.fillText("Plate ID: " + params["id"], 0.06 * xSize, 0.06 * ySize * 0.5);
+    context.fillText("Plate SN: " + params["sn"], 0.06 * xSize, 0.06 * ySize * 0.75);
+    context.fillText("Plate Mfr: " +  params["mfr"], 0.06 * xSize, 0.06 * ySize * 1);
+    context.fillText("Width: " + params["wid"], 0.06 * xSize, 0.06 * ySize * 1.25);
+    context.fillText("Length: " + params["len"], 0.06 * xSize, 0.06 * ySize * 1.5);
     context.fillText("Center is Zero (0 µin) Elevation.", 0.06 * xSize, 0.06 * ySize * 1.75);
-    context.fillText("Reference Line (bold): 4", 0.35 * xSize, 0.06 * ySize * 0.25);
-    context.fillText("Foot Size: 4 in", 0.35 * xSize, 0.06 * ySize * 0.5);
-    context.fillText("Border (X): 2 in", 0.35 * xSize, 0.06 * ySize * 0.75);
-    context.fillText("Border (Y): 2 in", 0.35 * xSize, 0.06 * ySize * 1);
-    context.fillText("Diagonal: 45.255 in", 0.35 * xSize, 0.06 * ySize * 1.25);
-    context.fillText("Run Description: Initial", 0.65 * xSize, 0.06 * ySize * 0.25);
-    context.fillText("Grade: AA", 0.65 * xSize, 0.06 * ySize * 0.5);
-    context.fillText("Flatness: 131 µin", 0.65 * xSize, 0.06 * ySize * 0.75);
-    context.fillText("Closure G: 78 µin", 0.65 * xSize, 0.06 * ySize * 1);
-    context.fillText("Closure H: 72 µin", 0.65 * xSize, 0.06 * ySize * 1.25);
-    context.fillText("Repeat: 150 µin", 0.65 * xSize, 0.06 * ySize * 1.5);
-    context.fillText("Certificate: 1000001", xSize * 0.06, ySize - (ySize * 0.06 * 0.25));
-    context.fillText("Technician: Tech", xSize * 0.35, ySize - (ySize * 0.06 * 0.25));
-    context.fillText("Date: 7/8/2018", xSize * 0.65, ySize - (ySize * 0.06 * 0.25));
+    context.fillText("Reference Line is BOLD", 0.65 * xSize, 0.06 * ySize * 0.5);
+    context.fillText("Grade: " + params["grade"], 0.65 * xSize, 0.06 * ySize * 0.75);
+    context.fillText("Flatness: " + flatness + " µin", 0.65 * xSize, 0.06 * ySize * 1);
+    context.fillText("Closure 7: " + getMid(Line7) + " µin", 0.65 * xSize, 0.06 * ySize * 1.25);
+    context.fillText("Closure 8: " + getMid(Line8) + " µin", 0.65 * xSize, 0.06 * ySize * 1.5);
+    context.fillText("Date: " + d.getDate() + " " + mon[d.getMonth()] + " " + d.getFullYear(), xSize * 0.65, ySize - (ySize * 0.06 * 0.25));
     context.fillText("Page 1", xSize * 0.9, ySize - (ySize * 0.06 * 0.25));
-    contextNum.fillText("Customer: Customer", 0.06 * xSize, 0.06 * ySize * 0.25);
-    contextNum.fillText("Plate ID: PlateID", 0.06 * xSize, 0.06 * ySize * 0.5);
-    contextNum.fillText("Plate SN: 2017-10-23", 0.06 * xSize, 0.06 * ySize * 0.75);
-    contextNum.fillText("Plate Mfr: Rahn", 0.06 * xSize, 0.06 * ySize * 1);
-    contextNum.fillText("Width: 36", 0.06 * xSize, 0.06 * ySize * 1.25);
-    contextNum.fillText("Length: 36", 0.06 * xSize, 0.06 * ySize * 1.5);
+    contextNum.fillText("Customer: " + params["cust"], 0.06 * xSize, 0.06 * ySize * 0.25);
+    contextNum.fillText("Plate ID: " + params["id"], 0.06 * xSize, 0.06 * ySize * 0.5);
+    contextNum.fillText("Plate SN: " + params["sn"], 0.06 * xSize, 0.06 * ySize * 0.75);
+    contextNum.fillText("Plate Mfr: " +  params["mfr"], 0.06 * xSize, 0.06 * ySize * 1);
+    contextNum.fillText("Width: " + params["wid"], 0.06 * xSize, 0.06 * ySize * 1.25);
+    contextNum.fillText("Length: " + params["len"], 0.06 * xSize, 0.06 * ySize * 1.5);
     contextNum.fillText("Center is Zero (0 µin) Elevation.", 0.06 * xSize, 0.06 * ySize * 1.75);
-    contextNum.fillText("Reference Line (bold): 4", 0.35 * xSize, 0.06 * ySize * 0.25);
-    contextNum.fillText("Foot Size: 4 in", 0.35 * xSize, 0.06 * ySize * 0.5);
-    contextNum.fillText("Border (X): 2 in", 0.35 * xSize, 0.06 * ySize * 0.75);
-    contextNum.fillText("Border (Y): 2 in", 0.35 * xSize, 0.06 * ySize * 1);
-    contextNum.fillText("Diagonal: 45.255 in", 0.35 * xSize, 0.06 * ySize * 1.25);
-    contextNum.fillText("Run Description: Initial", 0.65 * xSize, 0.06 * ySize * 0.25);
-    contextNum.fillText("Grade: AA", 0.65 * xSize, 0.06 * ySize * 0.5);
-    contextNum.fillText("Flatness: 131 µin", 0.65 * xSize, 0.06 * ySize * 0.75);
-    contextNum.fillText("Closure G: 78 µin", 0.65 * xSize, 0.06 * ySize * 1);
-    contextNum.fillText("Closure H: 72 µin", 0.65 * xSize, 0.06 * ySize * 1.25);
-    contextNum.fillText("Repeat: 150 µin", 0.65 * xSize, 0.06 * ySize * 1.5);
-    contextNum.fillText("Certificate: 1000001", xSize * 0.06, ySize - (ySize * 0.06 * 0.25));
-    contextNum.fillText("Technician: Tech", xSize * 0.35, ySize - (ySize * 0.06 * 0.25));
-    contextNum.fillText("Date: 7/8/2018", xSize * 0.65, ySize - (ySize * 0.06 * 0.25));
+    contextNum.fillText("Reference Line is BOLD", 0.65 * xSize, 0.06 * ySize * 0.5);
+    contextNum.fillText("Grade: " + params["grade"], 0.65 * xSize, 0.06 * ySize * 0.75);
+    contextNum.fillText("Flatness: " + flatness + " µin", 0.65 * xSize, 0.06 * ySize * 1);
+    contextNum.fillText("Closure 7: " + getMid(Line7) + " µin", 0.65 * xSize, 0.06 * ySize * 1.25);
+    contextNum.fillText("Closure 8: " + getMid(Line8) + " µin", 0.65 * xSize, 0.06 * ySize * 1.5);
+    contextNum.fillText("Date: " + d.getDate() + " " + mon[d.getMonth()] + " " + d.getFullYear(), xSize * 0.65, ySize - (ySize * 0.06 * 0.25));
     contextNum.fillText("Page 2", xSize * 0.9, ySize - (ySize * 0.06 * 0.25));
     zRotCos = Math.cos(zRot * Math.PI / 180);
     zRotSin = Math.sin(zRot * Math.PI / 180);

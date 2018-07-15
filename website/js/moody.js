@@ -27,6 +27,7 @@ function disableOutput() {
 }
 
 function validateInputs() {
+    var cust = document.getElementsByName("cust")[0].value;
     var id = document.getElementsByName("id")[0].value;
     var mfr = document.getElementsByName("mfr")[0].value;
     var sn = document.getElementsByName("sn")[0].value;
@@ -36,7 +37,7 @@ function validateInputs() {
 
     var outputs = document.getElementsByClassName("output");
 
-    if (id == "" || mfr == "" || sn == "" || wid == "" || len == "") {
+    if (cust =="" || id == "" || mfr == "" || sn == "" || wid == "" || len == "") {
         disableOutput();
     } else {
         updateMeas(wid, len, grade);
