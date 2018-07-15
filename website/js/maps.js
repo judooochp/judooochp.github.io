@@ -287,9 +287,6 @@ function getElevations() {
 
   elevations.push(line8);
   
-  
-
-  alert(line1 + " " + lineEnd);
   return elevations;
 }
 
