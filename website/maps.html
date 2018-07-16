@@ -2,68 +2,69 @@
 <html>
 	<head>
 		<title>start a surface plate calibration</title>
-        <link rel="stylesheet" type="text/css" href="style.css" />
-        <link rel="icon" href="img/icon.ico" />
-        <script type="text/javascript" src="js/maps.js"></script>
-        <style media="print">
-            @media print {
-                .no-display {
-                    display: none;
-                }
-            }
-        </style>
-        <style media="screen">
-            @media screen {
-                .zoom1 {
-                    transform: scale(0.5,0.5);
-                    position: absolute;
-                    left:-250px;
-                    top:-250px;
-                }
-                .zoom2 {
-                    transform: scale(0.5,0.5);
-                    position: absolute;
-                    left:300px;
-                    top:-250px;
-                }
-            }
-        </style>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="icon" href="img/icon.ico" />
+    <script type="text/javascript" src="js/maps.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style media="print">
+      @media print {
+        .no-display {
+          display: none;
+        }
+      }
+    </style>
+    <style media="screen">
+      @media screen {
+        .zoom1 {
+          transform: scale(0.5,0.5);
+          position: absolute;
+          left:-250px;
+          top:-250px;
+        }
+        .zoom2 {
+          transform: scale(0.5,0.5);
+          position: absolute;
+          left:300px;
+          top:-250px;
+        }
+      }
+    </style>
 	</head>
 	<body>
 		<header>
-            <h1>the moody method printer</h1>
+      <h1>The Moody Method Printer</h1>
 			<nav>
-                <ul>
-                    <li><a href="index.html">home</a></li>
-                    <li><a href="start.html">start</a></li>
-                    <li class="sub"><a href="moody.html">the moody method</a>
-                        <ul class="sub">
-                            <li><a href="prep.html">preparations</a></li>
-                            <li><a href="interpret.html">calculating&nbsp;and&nbsp;interpreting</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="references.html">references</a></li>
-                </ul>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="start.html">Start</a></li>
+          <li class="sub"><a href="moody.html">The Moody Method</a>
+            <ul class="sub">
+              <li><a href="prep.html">Preparations</a></li>
+              <li><a href="interpret.html">Calculating&nbsp;&amp;&nbsp;Interpreting</a></li>
+            </ul>
+          </li>
+          <li><a href="references.html">References</a></li>
+        </ul>
 			</nav>
 		</header>
 		<main>
-            <h2>exaggerated wireframe</h2>
-            <form name="zRotForm" class="no-display">
-                <input id="angleIn" type="text" placeholder="&plus;5&deg;" class="no-display" />
-                <input type="button" id="angleGo" value="Change Angle" class="no-display" />
-            </form>
-            <p class="no-display">
-            When printing, select the "Shrink to Fit" or "Fit to Page" option.
-            </p>
-            <br />
+      <h2>exaggerated wireframe</h2>
+      <form name="zRotForm" class="no-display">
+        <input id="angleIn" type="text" placeholder="&plus;5&deg;" class="no-display" />
+        <input type="button" id="angleGo" value="Change Angle" class="no-display" />
+      </form>
+      <p class="no-display">
+      When printing, select the "Shrink to Fit" or "Fit to Page" option.
+      </p>
+      <br />
 
-            <canvas id="sPlate" width="700" height="950">Your browser does not support HTML5 Canvas elements. Perhaps <a href="chrome.google.com">upgrade?</a></canvas>
-            <br />
-            <br />
-            <h2>numeric elevations</h2>
-            <canvas id="sPlateNum" width="700" height="950">Your browser does not support HTML5 Canvas elements. Perhaps <a href="chrome.google.com">upgrade?</a></canvas>
-            <script type="text/javascript">
-            <!--
+      <canvas id="sPlate" width="700" height="950">Your browser does not support HTML5 Canvas elements. Perhaps <a href="chrome.google.com">upgrade?</a></canvas>
+      <br />
+      <br />
+      <h2>numeric elevations</h2>
+      <canvas id="sPlateNum" width="700" height="950">Your browser does not support HTML5 Canvas elements. Perhaps <a href="chrome.google.com">upgrade?</a></canvas>
+      <script type="text/javascript">
+<!--
 var params = parseURLParams(window.location.href);
 var elevations = getElevations();
               
@@ -544,19 +545,19 @@ function zRotate() {
 }
 drawMap();
 document.getElementById("angleGo").addEventListener("click", zRotate);
-            -->
-            </script>
+-->
+      </script>
 		</main>
 		<footer>
 			<nav>
-                <ul>
-                    <li><a href="index.html">home</a></li>
-                    <li><a href="start.html">start</a></li>
-                    <li><a href="moody.html">the moody method</a></li>
-                    <li><a href="references.html">references</a></li>
-                </ul>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="start.html">Start</a></li>
+          <li><a href="moody.html">The Moody Method</a></li>
+          <li><a href="references.html">References</a></li>
+        </ul>
 			</nav>
-            <p>&copy;2018 <a href="mailto:jakeegill@gmail.com">Jacob Gilliam</a></p>
+        <p>&copy;2018 <a href="mailto:S1121763@student.mcckc.edu">Jacob Gilliam</a></p>
 		</footer>
 	</body>
 </html>
