@@ -10,7 +10,8 @@ wrapper, main, header, nav, footer {
 }
 
 body {
-    width: 700px;
+    min-width: 300px;
+    max-width: 700px;
     margin: 10px auto;
     background-color: #222;
     color: #fff;
@@ -47,7 +48,7 @@ header nav a:hover {
 }
 
 main {
-    padding: 10px 10px 10px;
+    padding: 10px;
     background-image: url("img/gradient.jpg");
     background-repeat: no-repeat;
     background-color: #000;
@@ -67,6 +68,15 @@ main ul li a {
 
 main ul li a:hover {
     color: #fff;
+}
+
+main div {
+  width: 100%;
+}
+
+main div form {
+  float: left;
+  width: 60%;
 }
 
 h2, h3 {
@@ -89,6 +99,7 @@ h3 {
     padding: 0.2em;
 }
 
+/*  NAVIGATION SPECIFICS  */
 
 nav a, footer a {
     text-decoration: none;
@@ -106,8 +117,6 @@ nav ul {
     list-style: none;
     list-style-image: none;
     list-style-position: inside;
-    padding: 0;
-    margin: 0;
 }
 
 nav ul li {
@@ -142,7 +151,6 @@ nav ul li.sub ul li {
 footer {
     text-align: center;
     background-color: #444;
-    padding: 10px 0;
 }
 
 footer a:hover {
@@ -167,6 +175,7 @@ div {
 }
 
 td {
+    width: auto;
     text-align: left;
     vertical-align: top;
 }
@@ -175,15 +184,16 @@ td {
     width: 50px;
 }
 
-p img.right {
+img.right {
     float: right;
-    width: 170px;
-    margin-left: 10px;
+    min-width: 170px;
+    width: 40%;
 }
 
-p img.left {
+img.left {
     float: left;
-    width: 200px;
+    min-width: 200px;
+    width: 40%;
     margin-right: 10px;
 }
 
@@ -214,9 +224,141 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
+.room {
+  display: none;
+}
+
+.no-room {
+  display: inline;
+}
+
 canvas {
   background-color: #fff;
-  padding: 0;
-  margin: 0;
   width: 100%;
+}
+
+@media screen and (max-width: 700px) {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background-color: #000;
+    margin: 0;
+  }
+  
+  header {
+    background-size: auto;
+    padding: 0 5px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+    line-height: 1.3em;
+    width: 1%;
+    text-align: right;
+    float: right;
+    direction: rtl;
+    overflow: visible;
+  }
+  
+  nav a {
+    font-family: Arial, sans-serif;
+  }
+  
+/*  NAVIGATION SPECIFICS  */
+
+  nav a, footer a {
+      text-decoration: none;
+      margin: 0;
+      padding: 0;
+  }
+
+  p a {
+      font-family: Trebuchet, sans-serif;
+      margin: 0;
+      padding: 0;
+  }
+
+  a:hover {
+      color: #ddd;
+      margin: 0;
+      padding: 0;
+  }
+
+  nav ul {
+      display: block;
+      list-style: none;
+      list-style-image: none;
+      list-style-position: inside;
+      margin: 0;
+      padding: 0;
+  }
+
+  nav ul li {
+      position: relative;
+      display: block;
+      text-align: left;
+      line-height: 1.2em;
+      margin: 0;
+      padding: 0;
+  }
+
+  nav ul li ul {
+      position: relative;
+      display: block;
+      margin: 0;
+      padding: 0;
+  }
+
+  nav ul li.sub:hover ul {
+      position: relative;
+      display: block;
+      margin: 0;
+      padding: 0;
+  }
+
+  nav ul li.sub ul li {
+      display: block;
+      line-height: 1.2em;
+      background-color: transparent;
+      margin: 0;
+      padding: 0;
+  }
+  
+  footer nav {
+    padding-left: 5px;
+  }
+  
+  main {
+    margin: 0;
+  }
+  
+  img {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  
+  p img.right, p img.left {
+    margin: 0;
+    min-width: 25%;
+    max-width: 40%;
+  }
+  
+  td {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .room {
+    display: inline;
+  }
+  
+  .no-room {
+    display: none;
+  }
 }
