@@ -17,6 +17,7 @@
     display: block;
     padding: 0;
     margin: 0;
+    width: 100%
   }
   
   header, h1, nav, h2, form, p, footer, br {
