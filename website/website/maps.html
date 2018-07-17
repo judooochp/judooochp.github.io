@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>start a surface plate calibration</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="maps.css" />
+    <link rel="icon" href="img/icon.ico" />
+    <script type="text/javascript" src="js/maps.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style media="print">
+      @media print {
+        .no-display {
+          display: none;
+        }
+      }
+    </style>
+    <style media="screen">
+      @media screen {
+        .zoom1 {
+          transform: scale(0.5,0.5);
+          position: absolute;
+          left:-250px;
+          top:-250px;
+        }
+        .zoom2 {
+          transform: scale(0.5,0.5);
+          position: absolute;
+          left:300px;
+          top:-250px;
+        }
+      }
+    </style>
+	</head>
+	<body>
+		<header>
+      <h1>The Moody Method Printer</h1>
+			<nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="start.html">Start</a></li>
+          <li class="sub"><a href="moody.html">The Moody Method</a>
+            <ul class="sub">
+              <li><a href="prep.html">Preparations</a></li>
+              <li><a href="interpret.html">Calculating&nbsp;&amp;&nbsp;Interpreting</a></li>
+            </ul>
+          </li>
+          <li><a href="references.html">References</a></li>
+        </ul>
+			</nav>
+		</header>
+		<main>
+      <h2>Exaggerated Wireframe</h2>
+      <form name="zRotForm" class="no-display">
+        <input id="angleIn" type="text" placeholder="&plus;5&deg;" class="no-display" />
+        <input type="button" id="angleGo" value="Change Angle" class="no-display" />
+      </form>
+      <p class="no-display">
+      When printing, select the "Shrink to Fit" or "Fit to Page" option.
+      </p>
+      <br />
+
+      <canvas id="sPlate" width="2800" height="3800">Your browser does not support HTML5 Canvas elements. Perhaps <a href="chrome.google.com">upgrade?</a></canvas>
+      <br />
+      <br />
+      <h2>Numeric Elevations</h2>
+      <canvas id="sPlateNum" width="2800" height="3800">Your browser does not support HTML5 Canvas elements. Perhaps <a href="chrome.google.com">upgrade?</a></canvas>
+      <script type="text/javascript">
+<!--
+var params = parseURLParams(window.location.href);
+var elevations = getElevations();
+              
+var canvas = document.getElementById("sPlate");
+var context = canvas.getContext("2d");
+var canvasNum = document.getElementById("sPlateNum");
+var contextNum = canvasNum.getContext("2d");
+var Line1 = doRound(elevations[0]);
+var Line2 = doRound(elevations[1]);
+var Line3 = doRound(elevations[2]);
+var Line4 = doRound(elevations[3]);
+var Line5 = doRound(elevations[4]);
+var Line6 = doRound(elevations[5]);
+var Line7 = doRound(elevations[6]);
+var Line8 = doRound(elevations[7]);
+        
+var fontpt = getFontPt(params["diagMeas"]);
+var fontSmall = fontpt * 4;
+fontSmall = fontSmall.toString();
+var fontBig = fontpt * 1.5 * 4;
+fontBig = fontBig.toString();
+              
+var zRot = 15;
+var xRot = 45;
+var minElev = getMin(elevations);
+var maxElev = getMax(elevations);
+var flatness = maxElev - minElev;
+var xSize = 2800;
+var ySize = 3800;
+var pWid = Line4.length - 1;
+var pLen = Line3.length - 1;
+var pDiag = Line1.length - 1;
+var angle = Math.atan(pLen / pWid);
+var zDiv = 1350 / (maxElev - minElev) / 2;
+var diagLen = Math.sqrt(pWid * pWid + pLen * pLen);
+var mult = xSize / diagLen;
+var zRotCos, zRotSin, xRotCos;
+var zRotDiagX = Math.cos(2 * Math.PI - angle);
+var zRotDiagY = Math.sin(2 * Math.PI - angle);
+var RefLine = Number(params["north"]);
+var x;
+var y;
+var xPrime;
+var yPrime;
+var i;
+
+var d = new Date();
+var mon = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];        
+
+// The standard ASME B89.3.7-2013 states that the dimensions of a surface plate's working surface are nominal only, and that any plate with dimensions within 5% of the nominal value are considered that nominal value. Hence, if a user attempts to enter the exact value, we are capturing that plus/minus 5% with a >= x * 0.95 and <= x * 1.05 
+function fivePercent(value, nominal) {
+    if (value >= nominal * 0.95 && value <= nominal * 1.05) {
+        return true;
+    }
+    else return false;
+}        
+        
+function grade(flat, grad) {
+  if (flat <= grad) {
+    return "AA";
+  } else if (flat <= grad *2) {
+    return "A";
+  } else if (flat <= grad * 4) {
+    return "B";
+  } else if (flat <= grad * 8) {
+    return "TOOL";
+  } else {
+    return "Not Gradable";
+  }
+}        
+        
+function getGrade(flat, wid, len) {
+  if (fivePercent(wid, 18) && fivePercent(len, 18)) return grade(flat, 50);
+  if (fivePercent(wid, 24) && fivePercent(len, 36)) return grade(flat, 100);
+  if (fivePercent(wid, 36) && fivePercent(len, 48)) return grade(flat, 200);
+  if (fivePercent(wid, 36) && fivePercent(len, 60)) return grade(flat, 250);
+  if (fivePercent(wid, 48) && fivePercent(len, 48)) return grade(flat, 200);
+  if (fivePercent(wid, 48) && fivePercent(len, 60)) return grade(flat, 300);
+  if (fivePercent(wid, 72) && fivePercent(len, 96)) return grade(flat, 600);
+  if (fivePercent(wid, 72) && fivePercent(len, 144)) return grade(flat, 1100);
+  var awkwardFlatness = (Math.sqrt(wid * wid + len * len)) / 25 + 40;
+  var mod = awkwardFlatness % 25;
+  if (mod < 12.5) awkwardFlatness -= mod;
+  else if (mod >= 12.5) awkwardFlatness += (25 - mod);
+  awkwardFlatness = grade(flat, awkwardFlatness);
+  return awkwardFlatness;
+}
+
+function getBaseline() {
+  if (pWid > 12 && maxElev > 999) {
+    if ((i % 2) > 0) {
+      contextNum.textBaseline = "bottom";
+    } else {
+      contextNum.textBaseline = "top";
+    }
+  } else {
+    contextNum.textBaseline = "alphabetic";
+  }
+}
+        
+function drawMap() {
+  "use strict";
+  context.font = "48pt Arial";
+  context.textAlign = "left";
+  contextNum.font = "48pt Arial";
+  contextNum.textAlign = "left";
+  context.fillText("Customer: " + params["cust"], 0.06 * xSize, 0.06 * ySize * 0.25);
+  context.fillText("Plate ID: " + params["id"], 0.06 * xSize, 0.06 * ySize * 0.5);
+  context.fillText("Plate SN: " + params["sn"], 0.06 * xSize, 0.06 * ySize * 0.75);
+  context.fillText("Plate Mfr: " +  params["mfr"], 0.06 * xSize, 0.06 * ySize * 1);
+  context.fillText("Width: " + params["wid"], 0.06 * xSize, 0.06 * ySize * 1.25);
+  context.fillText("Length: " + params["len"], 0.06 * xSize, 0.06 * ySize * 1.5);
+  context.fillText("Center is Zero (0 \xB5in) Elevation.", 0.06 * xSize, 0.06 * ySize * 1.75);
+  context.fillText("Reference Line is BOLD", 0.65 * xSize, 0.06 * ySize * 0.5);
+  context.fillText("Grade: " + getGrade(flatness, Number(params["wid"]), Number(params["len"])), 0.65 * xSize, 0.06 * ySize * 0.75);
+  context.fillText("Flatness: " + flatness + " \xB5in", 0.65 * xSize, 0.06 * ySize * 1);
+  context.fillText("Closure 7: " + getMid(Line7) + " \xB5in", 0.65 * xSize, 0.06 * ySize * 1.25);
+  context.fillText("Closure 8: " + getMid(Line8) + " \xB5in", 0.65 * xSize, 0.06 * ySize * 1.5);
+  context.fillText("Date: " + d.getDate() + " " + mon[d.getMonth()] + " " + d.getFullYear(), xSize * 0.65, ySize - (ySize * 0.06 * 0.25));
+  context.fillText("Page 1", xSize * 0.9, ySize - (ySize * 0.06 * 0.25));
+  contextNum.fillText("Customer: " + params["cust"], 0.06 * xSize, 0.06 * ySize * 0.25);
+  contextNum.fillText("Plate ID: " + params["id"], 0.06 * xSize, 0.06 * ySize * 0.5);
+  contextNum.fillText("Plate SN: " + params["sn"], 0.06 * xSize, 0.06 * ySize * 0.75);
+  contextNum.fillText("Plate Mfr: " +  params["mfr"], 0.06 * xSize, 0.06 * ySize * 1);
+  contextNum.fillText("Width: " + params["wid"], 0.06 * xSize, 0.06 * ySize * 1.25);
+  contextNum.fillText("Length: " + params["len"], 0.06 * xSize, 0.06 * ySize * 1.5);
+  contextNum.fillText("Center is Zero (0 \xB5in) Elevation.", 0.06 * xSize, 0.06 * ySize * 1.75);
+  contextNum.fillText("Reference Line is BOLD", 0.65 * xSize, 0.06 * ySize * 0.5);
+  contextNum.fillText("Grade: " + getGrade(flatness, Number(params["wid"]), Number(params["len"])), 0.65 * xSize, 0.06 * ySize * 0.75);
+  contextNum.fillText("Flatness: " + flatness + " \xB5in", 0.65 * xSize, 0.06 * ySize * 1);
+  contextNum.fillText("Closure 7: " + getMid(Line7) + " \xB5in", 0.65 * xSize, 0.06 * ySize * 1.25);
+  contextNum.fillText("Closure 8: " + getMid(Line8) + " \xB5in", 0.65 * xSize, 0.06 * ySize * 1.5);
+  contextNum.fillText("Date: " + d.getDate() + " " + mon[d.getMonth()] + " " + d.getFullYear(), xSize * 0.65, ySize - (ySize * 0.06 * 0.25));
+  contextNum.fillText("Page 2", xSize * 0.9, ySize - (ySize * 0.06 * 0.25));
+  zRotCos = Math.cos(zRot * Math.PI / 180);
+  zRotSin = Math.sin(zRot * Math.PI / 180);
+  xRotCos = Math.cos(xRot * Math.PI / 180);
+  var AArray = [];
+  var aotLine = [];
+  for (i = 0; i < pDiag + 1; i += 1) {
+    x = zRotDiagX * (diagLen * (pDiag - i) / pDiag);
+    y = zRotDiagY * (diagLen * (pDiag - i) / pDiag);
+    context.lineWidth = 4;
+    contextNum.font = fontSmall + "pt Arial";
+    if (Line1[i] == maxElev || Line1[i] == minElev) {
+      contextNum.font = "bold " + fontBig + "pt Arial";
+    }
+    if (i > pDiag * 0.3 && i < pDiag * 0.5) {
+      contextNum.textAlign = "left";
+    } else if (i < pDiag * 0.7 && i > pDiag * 0.5) {
+      contextNum.textAlign = "right";
+    } else {
+      contextNum.textAlign = "center";
+    }
+    if (i == 0) {
+      contextNum.fillText(Line1[i], (x - (pWid / 2)) * (mult / 36 * 45.255 * 0.85) + (xSize / 2) + 10, (y + (pLen / 2)) * mult + (ySize / 2)) - 10;
+    } else if (i == pDiag) {
+      contextNum.fillText(Line1[i], (x - (pWid / 2)) * (mult / 36 * 45.255 * 0.85) + (xSize / 2) - 10, (y + (pLen / 2)) * mult + (ySize / 2)) + 10;
+    } else {
+      contextNum.fillText(Line1[i], (x - (pWid / 2)) * (mult / 36 * 45.255 * 0.85) + (xSize / 2), (y + (pLen / 2)) * mult + (ySize / 2));
+    }
+    xPrime = (x - pWid / 2) * zRotCos - (y + pLen / 2) * zRotSin;
+    yPrime =  (x - pWid / 2) * zRotSin + (y + pLen / 2) * zRotCos;
+    x = xPrime;
+    y = yPrime;
+    yPrime = y * xRotCos;
+    y = yPrime;
+    AArray.push((x * mult) + (xSize / 2));
+    AArray.push((y * mult) + (ySize / 2) - ((Line1[i] - minElev) * zDiv));
+    aotLine.push((x * mult) + (xSize / 2));
+    aotLine.push((y * mult) + (ySize / 2));
+    context.beginPath();
+    context.moveTo((x * mult) + (xSize / 2), (y * mult) + (ySize / 2));
+    context.lineTo((x * mult) + (xSize / 2), (y * mult) + (ySize / 2) - ((Line1[i] - minElev) * zDiv));
+    context.stroke();
+  }
+  for (i = 0; i < AArray.length * 2 - 1; i += 2) {
+    context.beginPath();
+    context.moveTo(AArray[i], AArray[i + 1]);
+    context.lineTo(AArray[i + 2], AArray[i + 3]);
+    context.stroke();
+    context.beginPath();
+    context.moveTo(aotLine[i], aotLine[i + 1]);
+    context.lineTo(aotLine[i + 2], aotLine[i + 3]);
+    context.stroke();
+  }
+  var BArray = [];
+  var botLine = [];
+  for (i = 0; i < pDiag + 1; i += 1) {
+    x = zRotDiagX * (diagLen * (pDiag - i) / pDiag);
+    y = -pLen - (zRotDiagY * (diagLen * (pDiag - i) / pDiag));
+    context.lineWidth = 4;
+    contextNum.font = fontSmall + "pt Arial";
+    if (Line2[i] == maxElev || Line2[i] == minElev) {
+      contextNum.font = "bold " + fontBig + "pt Arial";
+    }
+    if (i > pDiag * 0.3 && i < pDiag * 0.5) {
+      contextNum.textAlign = "left";
+    } else if (i < pDiag * 0.7 && i > pDiag * 0.5) {
+      contextNum.textAlign = "right";
+    } else {
+      contextNum.textAlign = "center";
+    }
+    if (i == 0) {
+      contextNum.fillText(Line2[i], (x - (pWid / 2)) * (mult / 36 * 45.255 * 0.85) + (xSize / 2) + 10, (y + (pLen / 2)) * mult + (ySize / 2)) + 10;
+    } else if (i == pDiag) {
+      contextNum.fillText(Line2[i], (x - (pWid / 2)) * (mult / 36 * 45.255 * 0.85) + (xSize / 2) - 10, (y + (pLen / 2)) * mult + (ySize / 2)) - 10;
+    } else {
+      contextNum.fillText(Line2[i], (x - (pWid / 2)) * (mult / 36 * 45.255 * 0.85) + (xSize / 2), (y + (pLen / 2)) * mult + (ySize / 2));
+    }
+    xPrime = (x - pWid / 2) * zRotCos - (y + pLen / 2) * zRotSin;
+    yPrime =  (x - pWid / 2) * zRotSin + (y + pLen / 2) * zRotCos;
+    x = xPrime;
+    y = yPrime;
+    yPrime = y * xRotCos;
+    y = yPrime;
+    BArray.push((x * mult) + (xSize / 2));
+    BArray.push((y * mult) + (ySize / 2) - ((Line2[i] - minElev) * zDiv));
+    botLine.push((x * mult) + (xSize / 2));
+    botLine.push((y * mult) + (ySize / 2));
+    context.beginPath();
+    context.moveTo((x * mult) + (xSize / 2), (y * mult) + (ySize / 2));
+    context.lineTo((x * mult) + (xSize / 2), (y * mult) + (ySize / 2) - ((Line2[i] - minElev) * zDiv));
+    context.stroke();
+  }
+  for (i = 0; i < BArray.length * 2 - 1; i += 2) {
+    context.beginPath();
+    context.moveTo(BArray[i], BArray[i + 1]);
+    context.lineTo(BArray[i + 2], BArray[i + 3]);
+    context.stroke();
+    context.beginPath();
+    context.moveTo(botLine[i], botLine[i + 1]);
+    context.lineTo(botLine[i + 2], botLine[i + 3]);
+    context.stroke();
+  }
+  var CArray = [];
+  var cotLine = [];
+  for (i = 0; i < pLen + 1; i += 1) {
+    x = pWid;
+    y = -i;
+    if (RefLine == "3") {
+      context.lineWidth = 10;
+      contextNum.font = "bold " + fontSmall + "pt Arial";
+    } else {
+      context.lineWidth = 4;
+      contextNum.font = fontSmall + "pt Arial";
+    }
+    if (Line3[i] == maxElev || Line3[i] == minElev) {
+      contextNum.font = "bold " + fontBig + "pt Arial";
+    }
+    if (i == 0 || i == pLen || i == pLen / 2) {
+        // Do not print -- Avoid confusion.
+    } else {
+      contextNum.textAlign = "left";
+      contextNum.fillText(Line3[i], (x - (pWid / 2)) * (mult / 36 * 45.255 * 0.85) + (xSize / 2) + 10, (y + (pLen / 2)) * mult + (ySize / 2));
+    }
+    xPrime = (x - pWid / 2) * zRotCos - (y + pLen / 2) * zRotSin;
+    yPrime =  (x - pWid / 2) * zRotSin + (y + pLen / 2) * zRotCos;
+    x = xPrime;
+    y = yPrime;
+    yPrime = y * xRotCos;
+    y = yPrime;
+    CArray.push((x * mult) + (xSize / 2));
+    CArray.push((y * mult) + (ySize / 2) - ((Line3[i] - minElev) * zDiv));
+    cotLine.push((x * mult) + (xSize / 2));
+    cotLine.push((y * mult) + (ySize / 2));
+    context.beginPath();
+    context.moveTo((x * mult) + (xSize / 2), (y * mult) + (ySize / 2));
+    context.lineTo((x * mult) + (xSize / 2), (y * mult) + (ySize / 2) - ((Line3[i] - minElev) * zDiv));
+    context.stroke();
+  }
+  for (i = 0; i < CArray.length * 2 - 1; i += 2) {
+    context.beginPath();
+    context.moveTo(CArray[i], CArray[i + 1]);
+    context.lineTo(CArray[i + 2], CArray[i + 3]);
+    context.stroke();
+    context.beginPath();
+    context.moveTo(cotLine[i], cotLine[i + 1]);
+    context.lineTo(cotLine[i + 2], cotLine[i + 3]);
+    context.stroke();
+  }
+  var DArray = [];
+  var dotLine = [];
+  for (i = 0; i < pWid + 1; i += 1) {
+    x = pWid - i;
+    y = -pLen;
+    contextNum.textAlign = "center";
+    if (RefLine == "4") {
+      context.lineWidth = 10;
+      contextNum.font = "bold " + fontpt + "pt Arial";
+    } else {
+      context.lineWidth = 4;
+      contextNum.font = fontSmall + "pt Arial";
+    }
+    if (Line4[i] == maxElev || Line4[i] == minElev) {
+      contextNum.font = "bold " + fontBig + "pt Arial";
+    }
+    if (i == 0 || i == pWid || i == pWid / 2) {
+// Do not print -- Avoid confusion. 
+    } else {
+      contextNum.textBaseline = getBaseline();
+      contextNum.fillText(Line4[i], (x - (pWid / 2)) * (mult / 36 * 45.255 * 0.85) + (xSize / 2), (y + (pLen / 2)) * mult + (ySize / 2) - 10);
+    }
+    xPrime = (x - pWid / 2) * zRotCos - (y + pLen / 2) * zRotSin;
+    yPrime =  (x - pWid / 2) * zRotSin + (y + pLen / 2) * zRotCos;
+    x = xPrime;
+    y = yPrime;
+    yPrime = y * xRotCos;
+    y = yPrime;
+    DArray.push((x * mult) + (xSize / 2));
+    DArray.push((y * mult) + (ySize / 2) - ((Line4[i] - minElev) * zDiv));
+    dotLine.push((x * mult) + (xSize / 2));
+    dotLine.push((y * mult) + (ySize / 2));
+    context.beginPath();
+    context.moveTo((x * mult) + (xSize / 2), (y * mult) + (ySize / 2));
+    context.lineTo((x * mult) + (xSize / 2), (y * mult) + (ySize / 2) - ((Line4[i] - minElev) * zDiv));
+    context.stroke();
+  }
+  for (i = 0; i < DArray.length * 2 - 1; i += 2) {
+    context.beginPath();
+    context.moveTo(DArray[i], DArray[i + 1]);
+    context.lineTo(DArray[i + 2], DArray[i + 3]);
+    context.stroke();
+    context.beginPath();
+    context.moveTo(dotLine[i], dotLine[i + 1]);
+    context.lineTo(dotLine[i + 2], dotLine[i + 3]);
+    context.stroke();
+  }
+  var EArray = [];
+  var eotLine = [];
+  for (i = 0; i < pLen + 1; i += 1) {
+    x = 0;
+    y = i - pLen;
+    if (RefLine == "5") {
+      context.lineWidth = 10;
+      contextNum.font = "bold " + fontpt + "pt Arial";
+    } else {
+      context.lineWidth = 4;
+      contextNum.font = fontSmall + "pt Arial";
+    }
+    if (Line5[i] == maxElev || Line5[i] == minElev) {
+      contextNum.font = "bold " + fontBig + "pt Arial";
+    }
+    if (i == 0 || i == pLen || i == pLen / 2) {
+// Do not print -- Avoid confusion.
+    } else {
+      contextNum.textAlign = "right";
+      contextNum.fillText(Line5[i], (x - (pWid / 2)) * (mult / 36 * 45.255 * 0.85) + (xSize / 2) - 10, (y + (pLen / 2)) * mult + (ySize / 2));
+    }
+    xPrime = (x - pWid / 2) * zRotCos - (y + pLen / 2) * zRotSin;
+    yPrime =  (x - pWid / 2) * zRotSin + (y + pLen / 2) * zRotCos;
+    x = xPrime;
+    y = yPrime;
+    yPrime = y * xRotCos;
+    y = yPrime;
+    EArray.push((x * mult) + (xSize / 2));
+    EArray.push((y * mult) + (ySize / 2) - ((Line5[i] - minElev) * zDiv));
+    eotLine.push((x * mult) + (xSize / 2));
+    eotLine.push((y * mult) + (ySize / 2));
+    context.beginPath();
+    context.moveTo((x * mult) + (xSize / 2), (y * mult) + (ySize / 2));
+    context.lineTo((x * mult) + (xSize / 2), (y * mult) + (ySize / 2) - ((Line5[i] - minElev) * zDiv));
+    context.stroke();
+  }
+  for (i = 0; i < EArray.length * 2 - 1; i += 2) {
+    context.beginPath();
+    context.moveTo(EArray[i], EArray[i + 1]);
+    context.lineTo(EArray[i + 2], EArray[i + 3]);
+    context.stroke();
+    context.beginPath();
+    context.moveTo(eotLine[i], eotLine[i + 1]);
+    context.lineTo(eotLine[i + 2], eotLine[i + 3]);
+    context.stroke();
+  }
+  var FArray = [];
+  var fotLine = [];
+  for (i = 0; i < pWid + 1; i += 1) {
+    x = i;
+    y = 0;
+    contextNum.textAlign = "center";
+    if (RefLine == "6") {
+      context.lineWidth = 10;
+      contextNum.font = "bold " + fontpt + "pt Arial";
+    } else {
+      context.lineWidth = 4;
+      contextNum.font = fontSmall + "pt Arial";
+    }
+    if (Line6[i] == maxElev || Line6[i] == minElev) {
+      contextNum.font = "bold " + fontBig + "pt Arial";
+    }
+    if (i == 0 || i == pWid || i == pWid / 2) {
+// Do not print -- Avoid confusion. 
+    } else {
+      contextNum.textBaseline = getBaseline();
+      contextNum.fillText(Line6[i], (x - (pWid / 2)) * (mult / 36 * 45.255 * 0.85) + (xSize / 2), (y + (pLen / 2)) * mult + (ySize / 2) + 10);
+    }
+    xPrime = (x - pWid / 2) * zRotCos - (y + pLen / 2) * zRotSin;
+    yPrime =  (x - pWid / 2) * zRotSin + (y + pLen / 2) * zRotCos;
+    x = xPrime;
+    y = yPrime;
+    yPrime = y * xRotCos;
+    y = yPrime;
+    FArray.push((x * mult) + (xSize / 2));
+    FArray.push((y * mult) + (ySize / 2) - ((Line6[i] - minElev) * zDiv));
+    fotLine.push((x * mult) + (xSize / 2));
+    fotLine.push((y * mult) + (ySize / 2));
+    context.beginPath();
+    context.moveTo((x * mult) + (xSize / 2), (y * mult) + (ySize / 2));
+    context.lineTo((x * mult) + (xSize / 2), (y * mult) + (ySize / 2) - ((Line6[i] - minElev) * zDiv));
+    context.stroke();
+  }
+  for (i = 0; i < FArray.length * 2 - 1; i += 2) {
+    context.beginPath();
+    context.moveTo(FArray[i], FArray[i + 1]);
+    context.lineTo(FArray[i + 2], FArray[i + 3]);
+    context.stroke();
+    context.beginPath();
+    context.moveTo(fotLine[i], fotLine[i + 1]);
+    context.lineTo(fotLine[i + 2], fotLine[i + 3]);
+    context.stroke();
+  }
+  var GArray = [];
+  var gotLine = [];
+  for (i = 0; i < pWid + 1; i += 1) {
+    x = pWid - i;
+    y = -pLen / 2;
+    context.lineWidth = 4;
+    contextNum.font = fontSmall + "pt Arial";
+    if (Line7[i] == maxElev || Line7[i] == minElev) {
+      contextNum.font = "bold " + fontBig + "pt Arial";
+    }
+    if (i == 0 || i == pWid) {
+      contextNum.textBaseline = "alphabetic";
+    } else {
+      contextNum.textBaseline = getBaseline();
+    }
+    if (x == pWid / 2) {
+// Don't print it. It gets ugly.
+    } else {
+      contextNum.fillText(Line7[i], (x - (pWid / 2)) * (mult / 36 * 45.255 * 0.85) + (xSize / 2), (y + (pLen / 2)) * mult + (ySize / 2));
+    }
+    xPrime = (x - pWid / 2) * zRotCos - (y + pLen / 2) * zRotSin;
+    yPrime =  (x - pWid / 2) * zRotSin + (y + pLen / 2) * zRotCos;
+    x = xPrime;
+    y = yPrime;
+    yPrime = y * xRotCos;
+    y = yPrime;
+    GArray.push((x * mult) + (xSize / 2));
+    GArray.push((y * mult) + (ySize / 2) - ((Line7[i] - minElev) * zDiv));
+    gotLine.push((x * mult) + (xSize / 2));
+    gotLine.push((y * mult) + (ySize / 2));
+    context.beginPath();
+    context.moveTo((x * mult) + (xSize / 2), (y * mult) + (ySize / 2));
+    context.lineTo((x * mult) + (xSize / 2), (y * mult) + (ySize / 2) - ((Line7[i] - minElev) * zDiv));
+    context.stroke();
+  }
+  for (i = 0; i < GArray.length * 2 - 1; i += 2) {
+    context.beginPath();
+    context.moveTo(GArray[i], GArray[i + 1]);
+    context.lineTo(GArray[i + 2], GArray[i + 3]);
+    context.stroke();
+    context.beginPath();
+    context.moveTo(gotLine[i], gotLine[i + 1]);
+    context.lineTo(gotLine[i + 2], gotLine[i + 3]);
+    context.stroke();
+  }
+  var HArray = [];
+  var hotLine = [];
+  for (i = 0; i < pLen + 1; i += 1) {
+    x = pWid / 2;
+    y = i - pLen;
+    context.lineWidth = 4;
+    contextNum.font = fontSmall + "pt Arial";
+    contextNum.textAlign = "center";
+    if (Line8[i] == maxElev || Line8[i] == minElev) {
+      contextNum.font = "bold " + fontBig + "pt Arial";
+    }
+    if (y == -pLen / 2) {
+// Don't Print it; It gets confusing.
+    } else {
+      contextNum.fillText(Line8[i], (x - (pWid / 2)) * (mult / 36 * 45.255 * 0.85) + (xSize / 2), (y + (pLen / 2)) * mult + (ySize / 2));
+    }
+    xPrime = (x - pWid / 2) * zRotCos - (y + pLen / 2) * zRotSin;
+    yPrime =  (x - pWid / 2) * zRotSin + (y + pLen / 2) * zRotCos;
+    x = xPrime;
+    y = yPrime;
+    yPrime = y * xRotCos;
+    y = yPrime;
+    HArray.push((x * mult) + (xSize / 2));
+    HArray.push((y * mult) + (ySize / 2) - ((Line8[i] - minElev) * zDiv));
+    hotLine.push((x * mult) + (xSize / 2));
+    hotLine.push((y * mult) + (ySize / 2));
+    context.beginPath();
+    context.moveTo((x * mult) + (xSize / 2), (y * mult) + (ySize / 2));
+    context.lineTo((x * mult) + (xSize / 2), (y * mult) + (ySize / 2) - ((Line8[i] - minElev) * zDiv));
+    context.stroke();
+  }
+  for (i = 0; i < HArray.length * 2 - 1; i += 2) {
+    context.beginPath();
+    context.moveTo(HArray[i], HArray[i + 1]);
+    context.lineTo(HArray[i + 2], HArray[i + 3]);
+    context.stroke();
+    context.beginPath();
+    context.moveTo(hotLine[i], hotLine[i + 1]);
+    context.lineTo(hotLine[i + 2], hotLine[i + 3]);
+    context.stroke();
+  }
+}
+function zRotate() {
+  var checkAngle = document.getElementById("angleIn").value;
+  if (isNaN(checkAngle)) {
+    window.alert("Must enter a number.");
+  } else {
+    if (checkAngle == "") {
+      zRot -= 5;
+    } else {
+      zRot = checkAngle;
+    }
+    context.clearRect(0, 0, xSize, ySize);
+    contextNum.clearRect(0, 0, xSize, ySize);
+    drawMap();
+    document.getElementById("angleIn").value = "";
+  }
+}
+drawMap();
+document.getElementById("angleGo").addEventListener("click", zRotate);
+-->
+      </script>
+		</main>
+		<footer>
+			<nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="start.html">Start</a></li>
+          <li><a href="moody.html">The Moody Method</a></li>
+          <li><a href="references.html">References</a></li>
+        </ul>
+			</nav>
+        <p>&copy;2018 <a href="mailto:S1121763@student.mcckc.edu">Jacob Gilliam</a></p>
+		</footer>
+	</body>
+</html>

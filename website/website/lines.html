@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>start a surface plate calibration</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="icon" href="img/icon.ico" />
+    <script type="text/javascript" src="js/line.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	</head>
+	<body onload="populateLines();">
+		<header>
+      <h1>The Moody Method Printer</h1>
+			<nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="start.html">Start</a></li>
+          <li class="sub"><a href="moody.html">The Moody Method</a>
+            <ul class="sub">
+              <li><a href="prep.html">Preparations</a></li>
+              <li><a href="interpret.html">Calculating&nbsp;&amp;&nbsp;Interpreting</a></li>
+            </ul>
+          </li>
+          <li><a href="references.html">References</a></li>
+        </ul>
+			</nav>
+		</header>
+		<main>
+      <h2>enter arcseconds</h2>
+      <div>
+        <form name="plate" id="plate" action="maps.html" method="get">
+          <table id="lines">
+            <tr>
+              <th>line 1</th>
+              <th>line 2</th>
+              <th>line 3</th>
+              <th>line 4</th>
+              <th>line 5</th>
+              <th>line 6</th>
+              <th>line 7</th>
+              <th>line 8</th>
+            </tr>
+            <tr>
+              <td id="line1"></td>
+              <td id="line2"></td>
+              <td id="line3"></td>
+              <td id="line4"></td>
+              <td id="line5"></td>
+              <td id="line6"></td>
+              <td id="line7"></td>
+              <td id="line8"></td>
+            </tr>
+          </table>
+          <input type="submit" id="submit" value="we're not quite ready." disabled />
+        </form>
+      </div>
+      <div>
+        <img src="img/lines.png" width="175" height="275" alt="The eight lines."/>
+      </div>
+		</main>
+		<footer>
+			<nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="start.html">Start</a></li>
+          <li><a href="moody.html">The Moody Method</a></li>
+          <li><a href="references.html">References</a></li>
+        </ul>
+			</nav>
+        <p>&copy;2018 <a href="mailto:S1121763@student.mcckc.edu">Jacob Gilliam</a></p>
+		</footer>
+	</body>
+</html>

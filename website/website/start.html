@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Start a Surface Plate Calibration</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="icon" href="img/icon.ico" />
+    <script type="text/javascript" src="js/moody.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	</head>
+	<body>
+		<header>
+      <h1>The Moody Method Printer</h1>
+			<nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="start.html">Start</a></li>
+          <li class="sub"><a href="moody.html">The Moody Method</a>
+            <ul class="sub">
+              <li><a href="prep.html">Preparations</a></li>
+              <li><a href="interpret.html">Calculating&nbsp;&amp;&nbsp;Interpreting</a></li>
+            </ul>
+          </li>
+          <li><a href="references.html">References</a></li>
+        </ul>
+			</nav>
+		</header>
+		<main>
+      <h2>Enter Plate Stats</h2>
+      <div style="vertical-align: top;">
+        <form name="plate" method="get" action="lines.html">
+          <table>
+            <tr>
+              <td><label>Customer:</label></td>
+              <td><input type="text" maxlength="25" placeholder="your customer" name="cust" onchange="validateInputs();" required /></td>
+            </tr>
+            <tr>
+              <td><label>Identification No.:</label></td>
+              <td><input type="text" maxlength="25" placeholder="id#" name="id" onchange="validateInputs();" required /></td>
+            </tr>
+            <tr>
+              <td><label>Manufacturer:</label></td>
+              <td><input type="text" maxlength="25" placeholder="manufacturer" name="mfr" onchange="validateInputs();" required /></td>
+            </tr>
+            <tr>
+              <td><label>Serial:</label></td>
+              <td><input type="text" maxlength="25" placeholder="serial number" name="sn" onchange="validateInputs();" required /></td>
+            </tr>
+            <tr>
+              <td><label>Width:</label></td>
+              <td><input type="number" name="wid" onchange="validateInputs();" required /></td>
+            </tr>
+            <tr>
+              <td><label>Length:</label></td>
+              <td><input type="number" name="len" onchange="validateInputs();" required /></td>
+            </tr>
+            <tr>
+              <td><label>Grade:</label></td>
+              <td><select name="grade" onchange="validateInputs();" required>
+                <option>AA</option>
+                <option>A</option>
+                <option>B</option>
+                <option>Data Only</option>
+                </select></td>
+            </tr>
+            <tr>
+              <td><label>Calibration Sticker on Side:</label></td>
+              <td><select name="north" onchange="validateInputs();" required> 
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                </select>
+              </td>
+            </tr>
+            <tr><td colspan="2" class="center output"><strong>Measurements per Line</strong></td></tr>
+            <tr>
+              <td class="output">lines 1 &amp; 2:</td>
+              <td class="output"><span id="diagMeas"></span> measurements</td>
+            </tr>
+            <tr>
+              <td class="output">lines 3, 5, &amp; 8:</td>
+              <td class="output"><span id="lenMeas"></span> measurements</td>
+            </tr>
+            <tr>
+              <td class="output">lines 4, 6, &amp; 7:</td>
+              <td class="output"><span id="widMeas"></span> measurements</td>
+            </tr>
+            <tr><td colspan="2" class="center output"><strong>margins</strong></td></tr>
+            <tr>
+              <td class="output">lines 3, 5 from edge:</td>
+              <td class="output"><span id="lenMargin"></span> in</td>
+            </tr>
+            <tr>
+              <td class="output">lines 4, 6 from edge:</td>
+              <td class="output"><span id="widMargin"></span> in</td>
+            </tr>
+            <tr>
+              <td colspan="2" class="center output"><strong>acceptance criteria</strong></td>
+            </tr>
+            <tr>
+              <td class="output">repeat:</td>
+              <td class="output"><span id="repeat"></span></td>
+            </tr>
+            <tr>
+              <td class="output">flatness:</td>
+              <td class="output"><span id="flatness"></span></td>
+            </tr>
+            <tr>
+              <td class="output">closure:</td>
+              <td class="output"><span id="closure"></span></td>
+            </tr>
+          </table>
+          <input type="hidden" name="diagMeas" />
+          <input type="hidden" name="lenMeas" />
+          <input type="hidden" name="widMeas" />
+          <br /><br />
+          <input type="submit" value="we're not quite ready." id="submit" disabled />
+        </form>
+        <img src="img/lines.png" class="right" alt="The eight lines."/>
+      </div>
+		</main>
+		<footer>
+			<nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="start.html">Start</a></li>
+          <li><a href="moody.html">The Moody Method</a></li>
+          <li><a href="references.html">References</a></li>
+        </ul>
+			</nav>
+        <p>&copy;2018 <a href="mailto:S1121763@student.mcckc.edu">Jacob Gilliam</a></p>
+		</footer>
+	</body>
+</html>
