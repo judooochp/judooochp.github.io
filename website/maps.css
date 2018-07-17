@@ -9,7 +9,8 @@
   main {
     margin: 0;
     padding: 0;
-    display: none;
+    background-image: none;
+    background-color: none;
   }
   
   canvas {
@@ -18,7 +19,7 @@
     margin: 0;
   }
   
-  header, h1, nav, h2, form, p, footer {
+  header, h1, nav, h2, form, p, footer, br {
     display: none;
   }
   
