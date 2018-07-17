@@ -10,7 +10,11 @@
     margin: 0;
     padding: 0;
     background-image: none;
-    background-color: none;
+    background-color: transparent;
+  }
+  
+  header, h1, nav, h2, form, p, footer, br {
+    display: none;
   }
   
   canvas {
@@ -18,10 +22,6 @@
     padding: 0;
     margin: 0;
     width: 100%
-  }
-  
-  header, h1, nav, h2, form, p, footer, br {
-    display: none;
   }
   
 }
