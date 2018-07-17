@@ -1,21 +1,25 @@
 @media print {
-  * {
-    margin: 0;
-    padding: 0;
-  }
   
   body {
     background-image: none;
     background-color: #fff;
+    
   }
   
   main {
     margin: 0;
     padding: 0;
-    background-image: none;
+    display: none;
+  }
+  
+  canvas {
+    display: block;
+    padding: 0;
+    margin: 0;
   }
   
   header, h1, nav, h2, form, p, footer {
     display: none;
   }
+  
 }
