@@ -261,3 +261,12 @@ function doRound(meas) {
   }
   return meas;
 }
+
+function getFontPt(diag) {
+  if (diag < 30) return 14;
+  if (diag < 40) return 12;
+  if (diag < 50) return 11.5;
+  if (diag < 60) return 11;
+  if (diag < 70) return 10.5;
+  else return 10;
+}

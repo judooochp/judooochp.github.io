@@ -59,11 +59,11 @@
       </p>
       <br />
 
-      <canvas id="sPlate" width="700" height="950">Your browser does not support HTML5 Canvas elements. Perhaps <a href="chrome.google.com">upgrade?</a></canvas>
+      <canvas id="sPlate" width="2800" height="3800">Your browser does not support HTML5 Canvas elements. Perhaps <a href="chrome.google.com">upgrade?</a></canvas>
       <br />
       <br />
       <h2>Numeric Elevations</h2>
-      <canvas id="sPlateNum" width="700" height="950">Your browser does not support HTML5 Canvas elements. Perhaps <a href="chrome.google.com">upgrade?</a></canvas>
+      <canvas id="sPlateNum" width="2800" height="3800">Your browser does not support HTML5 Canvas elements. Perhaps <a href="chrome.google.com">upgrade?</a></canvas>
       <script type="text/javascript">
 <!--
 var params = parseURLParams(window.location.href);
@@ -81,25 +81,31 @@ var Line5 = doRound(elevations[4]);
 var Line6 = doRound(elevations[5]);
 var Line7 = doRound(elevations[6]);
 var Line8 = doRound(elevations[7]);
+        
+var fontpt = getFontPt(params["diagMeas"]);
+var fontSmall = fontpt * 4;
+fontSmall = fontSmall.toString();
+var fontBig = fontpt * 1.5 * 4;
+fontBig = fontBig.toString();
               
 var zRot = 15;
 var xRot = 45;
 var minElev = getMin(elevations);
 var maxElev = getMax(elevations);
 var flatness = maxElev - minElev;
-var xSize = 700;
-var ySize = 950;
+var xSize = 2800;
+var ySize = 3800;
 var pWid = Line4.length - 1;
 var pLen = Line3.length - 1;
 var pDiag = Line1.length - 1;
 var angle = Math.atan(pLen / pWid);
-var zDiv = 1350 / (maxElev - minElev) / 8;
+var zDiv = 1350 / (maxElev - minElev) / 2;
 var diagLen = Math.sqrt(pWid * pWid + pLen * pLen);
 var mult = xSize / diagLen;
 var zRotCos, zRotSin, xRotCos;
 var zRotDiagX = Math.cos(2 * Math.PI - angle);
 var zRotDiagY = Math.sin(2 * Math.PI - angle);
-var RefLine = "4";
+var RefLine = Number(params["north"]);
 var x;
 var y;
 var xPrime;
@@ -159,11 +165,12 @@ function getBaseline() {
     contextNum.textBaseline = "alphabetic";
   }
 }
+        
 function drawMap() {
   "use strict";
-  context.font = "12pt Arial";
+  context.font = "48pt Arial";
   context.textAlign = "left";
-  contextNum.font = "12pt Arial";
+  contextNum.font = "48pt Arial";
   contextNum.textAlign = "left";
   context.fillText("Customer: " + params["cust"], 0.06 * xSize, 0.06 * ySize * 0.25);
   context.fillText("Plate ID: " + params["id"], 0.06 * xSize, 0.06 * ySize * 0.5);
@@ -201,10 +208,10 @@ function drawMap() {
   for (i = 0; i < pDiag + 1; i += 1) {
     x = zRotDiagX * (diagLen * (pDiag - i) / pDiag);
     y = zRotDiagY * (diagLen * (pDiag - i) / pDiag);
-    context.lineWidth = 1;
-    contextNum.font = "14pt Arial";
+    context.lineWidth = 4;
+    contextNum.font = fontSmall + "pt Arial";
     if (Line1[i] == maxElev || Line1[i] == minElev) {
-      contextNum.font = "bold 21pt Arial";
+      contextNum.font = "bold " + fontBig + "pt Arial";
     }
     if (i > pDiag * 0.3 && i < pDiag * 0.5) {
       contextNum.textAlign = "left";
@@ -250,10 +257,10 @@ function drawMap() {
   for (i = 0; i < pDiag + 1; i += 1) {
     x = zRotDiagX * (diagLen * (pDiag - i) / pDiag);
     y = -pLen - (zRotDiagY * (diagLen * (pDiag - i) / pDiag));
-    context.lineWidth = 1;
-    contextNum.font = "14pt Arial";
+    context.lineWidth = 4;
+    contextNum.font = fontSmall + "pt Arial";
     if (Line2[i] == maxElev || Line2[i] == minElev) {
-      contextNum.font = "bold 21pt Arial";
+      contextNum.font = "bold " + fontBig + "pt Arial";
     }
     if (i > pDiag * 0.3 && i < pDiag * 0.5) {
       contextNum.textAlign = "left";
@@ -300,14 +307,14 @@ function drawMap() {
     x = pWid;
     y = -i;
     if (RefLine == "3") {
-      context.lineWidth = 3;
-      contextNum.font = "bold 14pt Arial";
+      context.lineWidth = 10;
+      contextNum.font = "bold " + fontSmall + "pt Arial";
     } else {
-      context.lineWidth = 1;
-      contextNum.font = "14pt Arial";
+      context.lineWidth = 4;
+      contextNum.font = fontSmall + "pt Arial";
     }
     if (Line3[i] == maxElev || Line3[i] == minElev) {
-      contextNum.font = "bold 21pt Arial";
+      contextNum.font = "bold " + fontBig + "pt Arial";
     }
     if (i == 0 || i == pLen || i == pLen / 2) {
         // Do not print -- Avoid confusion.
@@ -347,14 +354,14 @@ function drawMap() {
     y = -pLen;
     contextNum.textAlign = "center";
     if (RefLine == "4") {
-      context.lineWidth = 3;
-      contextNum.font = "bold 14pt Arial";
+      context.lineWidth = 10;
+      contextNum.font = "bold " + fontpt + "pt Arial";
     } else {
-      context.lineWidth = 1;
-      contextNum.font = "14pt Arial";
+      context.lineWidth = 4;
+      contextNum.font = fontSmall + "pt Arial";
     }
     if (Line4[i] == maxElev || Line4[i] == minElev) {
-      contextNum.font = "bold 21pt Arial";
+      contextNum.font = "bold " + fontBig + "pt Arial";
     }
     if (i == 0 || i == pWid || i == pWid / 2) {
 // Do not print -- Avoid confusion. 
@@ -393,14 +400,14 @@ function drawMap() {
     x = 0;
     y = i - pLen;
     if (RefLine == "5") {
-      context.lineWidth = 3;
-      contextNum.font = "bold 14pt Arial";
+      context.lineWidth = 10;
+      contextNum.font = "bold " + fontpt + "pt Arial";
     } else {
-      context.lineWidth = 1;
-      contextNum.font = "14pt Arial";
+      context.lineWidth = 4;
+      contextNum.font = fontSmall + "pt Arial";
     }
     if (Line5[i] == maxElev || Line5[i] == minElev) {
-      contextNum.font = "bold 21pt Arial";
+      contextNum.font = "bold " + fontBig + "pt Arial";
     }
     if (i == 0 || i == pLen || i == pLen / 2) {
 // Do not print -- Avoid confusion.
@@ -440,14 +447,14 @@ function drawMap() {
     y = 0;
     contextNum.textAlign = "center";
     if (RefLine == "6") {
-      context.lineWidth = 3;
-      contextNum.font = "bold 14pt Arial";
+      context.lineWidth = 10;
+      contextNum.font = "bold " + fontpt + "pt Arial";
     } else {
-      context.lineWidth = 1;
-      contextNum.font = "14pt Arial";
+      context.lineWidth = 4;
+      contextNum.font = fontSmall + "pt Arial";
     }
     if (Line6[i] == maxElev || Line6[i] == minElev) {
-      contextNum.font = "bold 21pt Arial";
+      contextNum.font = "bold " + fontBig + "pt Arial";
     }
     if (i == 0 || i == pWid || i == pWid / 2) {
 // Do not print -- Avoid confusion. 
@@ -485,10 +492,10 @@ function drawMap() {
   for (i = 0; i < pWid + 1; i += 1) {
     x = pWid - i;
     y = -pLen / 2;
-    context.lineWidth = 1;
-    contextNum.font = "14pt Arial";
+    context.lineWidth = 4;
+    contextNum.font = fontSmall + "pt Arial";
     if (Line7[i] == maxElev || Line7[i] == minElev) {
-      contextNum.font = "bold 21pt Arial";
+      contextNum.font = "bold " + fontBig + "pt Arial";
     }
     if (i == 0 || i == pWid) {
       contextNum.textBaseline = "alphabetic";
@@ -530,11 +537,11 @@ function drawMap() {
   for (i = 0; i < pLen + 1; i += 1) {
     x = pWid / 2;
     y = i - pLen;
-    context.lineWidth = 1;
-    contextNum.font = "14pt Arial";
+    context.lineWidth = 4;
+    contextNum.font = fontSmall + "pt Arial";
     contextNum.textAlign = "center";
     if (Line8[i] == maxElev || Line8[i] == minElev) {
-      contextNum.font = "bold 21pt Arial";
+      contextNum.font = "bold " + fontBig + "pt Arial";
     }
     if (y == -pLen / 2) {
 // Don't Print it; It gets confusing.
