@@ -9,6 +9,12 @@
     background-color: #fff;
   }
   
+  main {
+    margin: 0;
+    padding: 0;
+    background-image: none;
+  }
+  
   header, h1, nav, h2, form, p, footer {
     display: none;
   }
