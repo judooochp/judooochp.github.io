@@ -66,7 +66,13 @@
       <canvas id="sPlateNum" width="2800" height="3800">Your browser does not support HTML5 Canvas elements. Perhaps <a href="chrome.google.com">upgrade?</a></canvas>
       <script type="text/javascript">
 <!--
+
+var d = new Date();
+var mon = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];   
 var params = parseURLParams(window.location.href);
+        
+document.getElementsByTagName("title")[0].innerHTML = (params["cust"] + " " + params["id"] + " " + d.getDate() + mon[d.getMonth()] + d.getFullYear());
+        
 var elevations = getElevations();
               
 var canvas = document.getElementById("sPlate");
@@ -110,10 +116,7 @@ var x;
 var y;
 var xPrime;
 var yPrime;
-var i;
-
-var d = new Date();
-var mon = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];        
+var i;     
 
 // The standard ASME B89.3.7-2013 states that the dimensions of a surface plate's working surface are nominal only, and that any plate with dimensions within 5% of the nominal value are considered that nominal value. Hence, if a user attempts to enter the exact value, we are capturing that plus/minus 5% with a >= x * 0.95 and <= x * 1.05 
 function fivePercent(value, nominal) {
