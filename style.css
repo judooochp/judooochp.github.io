@@ -1,0 +1,374 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-shadow: 0 0 8px #000;
+  box-sizing: border-box;
+}
+
+wrapper, main, header, nav, footer, video {
+  display: block;
+}
+
+video, iframe {
+  display: block;
+  width: 560px;
+  margin: 5px auto;
+}
+
+body {
+  min-width: 300px;
+  max-width: 700px;
+  margin: 10px auto;
+  background-color: #222;
+  color: #fff;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 100%;
+}
+
+header {
+  position: relative;
+  background-image: url("img/bgsmall.jpg");
+  background-repeat: no-repeat;
+  height: 141px;
+  text-align: center;
+}
+
+header nav {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+a {
+  color: #ddd;
+  font-family: Courier, monospace;
+}
+
+header nav a {
+  color: #fff;
+}
+
+header nav a:hover {
+  color: #ddd;
+}
+
+main {
+  padding: 10px;
+  background-image: url("img/gradient.jpg");
+  background-repeat: no-repeat;
+  background-color: #000;
+}
+
+main ul {
+  list-style: none;
+}
+
+main ul li {
+  margin-bottom: 1em;
+}
+
+main ul li a {
+  color: #ddd;
+}
+
+main ul li a:hover {
+  color: #fff;
+}
+
+main div {
+width: 100%;
+}
+
+main div form {
+float: left;
+width: 60%;
+}
+
+h2, h3 {
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 2em;
+  text-shadow: 2px 2px 2px #555;
+  padding: 0.2em;
+}
+
+h2 {
+  font-size: 1.5em;
+  padding: 0.2em;
+}
+
+h3 {
+  margin-left: 4em;
+  padding: 0.2em;
+}
+
+/*  NAVIGATION SPECIFICS  */
+
+nav a, footer a {
+  text-decoration: none;
+}
+
+p a {
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+a:hover {
+  color: #ddd;
+}
+
+nav ul {
+  list-style: none;
+  list-style-image: none;
+  list-style-position: inside;
+}
+
+nav ul li {
+  position: relative;
+  display: inline;
+  position: relative;
+  margin: 0;
+  margin-right: 10px;
+  padding: 5px;
+  text-align: left;
+}
+
+nav ul li ul {
+  position: relative;
+  display: none;
+}
+
+nav ul li.sub:hover ul {
+  position: absolute;
+  display: block;
+  left: 0;
+  z-index: 10;
+}
+
+nav ul li.sub ul li {
+  display: list-item;
+  line-height: 1.2em;
+  text-indent: 0;
+  background-color: #000;
+}
+
+footer {
+  text-align: center;
+  background-color: #444;
+}
+
+footer a:hover {
+  color: #fff;
+}
+
+footer p {
+  font-size: 0.6em;
+}
+
+.output {
+  display: none;
+}
+
+.center {
+  text-align: center;
+}
+
+div {
+  display: inline-block;
+  text-align: center;
+}
+
+td {
+  width: auto;
+  text-align: left;
+  vertical-align: top;
+}
+
+.arc {
+  width: 50px;
+}
+
+img.right {
+  float: right;
+  min-width: 170px;
+  width: 40%;
+}
+
+img.left {
+  float: left;
+  min-width: 200px;
+  width: 40%;
+  margin-right: 10px;
+}
+
+input, select {
+  text-shadow: none;
+  width: 10em;
+  line-height: 1em;
+  border: none;
+  margin: 0.2em 0;
+  padding: 0.1em 0.2em;
+  border: none;
+  background-color: #fff;
+}
+
+input:hover, select:hover {
+  background-color: #ffb;
+}
+
+/* For Firefox */
+input[type='number'] {
+  -moz-appearance:textfield;
+}
+
+/* Webkit browsers like Safari and Chrome */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.room {
+  display: none;
+}
+
+.no-room {
+  display: inline;
+}
+
+canvas {
+  background-color: #fff;
+  width: 100%;
+}
+
+@media screen and (max-width: 700px) {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background-color: #000;
+    margin: 0;
+  }
+  
+  header {
+    background-size: auto;
+    padding: 0 5px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+    line-height: 1.3em;
+    width: 1%;
+    text-align: right;
+    float: right;
+    direction: rtl;
+    overflow: visible;
+  }
+  
+  nav a {
+    font-family: Arial, sans-serif;
+  }
+  
+/*  NAVIGATION SPECIFICS  */
+
+  nav a, footer a {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  p a {
+    font-family: "Trebuchet MS", sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  a:hover {
+    color: #ddd;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav ul {
+    display: block;
+    list-style: none;
+    list-style-image: none;
+    list-style-position: inside;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav ul li {
+    position: relative;
+    display: block;
+    text-align: left;
+    line-height: 1.2em;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav ul li ul {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav ul li.sub:hover ul {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav ul li.sub ul li {
+    display: block;
+    line-height: 1.2em;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+  }
+  
+  footer nav {
+    padding-left: 5px;
+  }
+  
+  main {
+    margin: 0;
+  }
+  
+  img {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    min-width: 25%;
+    max-width: 40%;
+  }
+  
+  p img.right {
+    float: right;
+  } 
+  
+  p img.left {
+    float: left;
+  }
+  
+  td {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .room {
+    display: inline;
+  }
+  
+  .no-room {
+    display: none;
+  }
+}
