@@ -226,3 +226,12 @@ function updateMeas(wid, len, grade) {
 
     }
 }
+
+function prepop() {
+  document.getElementsByName("id")[0].value = "TM0780";
+  document.getElementsByName("mfr")[0].value = "Rahn";
+  document.getElementsByName("sn")[0].value = "35792";
+  document.getElementsByName("wid")[0].value = "24";
+  document.getElementsByName("len")[0].value = "36";
+  document.getElementsByName("north")[0].value = "6";
+}

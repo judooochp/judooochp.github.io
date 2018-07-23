@@ -7,7 +7,7 @@
     <script type="text/javascript" src="js/moody.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	</head>
-	<body>
+	<body onload="prepop();">
 		<header>
       <h1>The Moody Method Printer</h1>
 			<nav>
@@ -31,7 +31,7 @@
           <table>
             <tr>
               <td><label>Customer:</label></td>
-              <td><input type="text" maxlength="25" placeholder="your customer" name="cust" onchange="validateInputs();" required /></td>
+              <td><input type="text" maxlength="25" placeholder="ENTER YOUR NAME" name="cust" onchange="validateInputs();" required /></td>
             </tr>
             <tr>
               <td><label>Identification No.:</label></td>
