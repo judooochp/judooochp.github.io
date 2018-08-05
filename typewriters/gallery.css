@@ -1,0 +1,47 @@
+* {
+  box-sizing:     border-box;
+}
+
+body {
+  width:          95%;
+  max-width:      95%;
+}
+
+slides {
+  display:        none;
+  width:          100%;
+}
+
+viewer {
+  display:        block;
+}
+
+#royalQuietDeLuxe_slides {
+  display:        block;
+}
+
+slides ul {
+  list-style:     none;
+}
+
+slides ul li {
+  display:        inline;
+}
+
+slides ul li img {
+  height:         3em;
+}
+
+viewer {
+  width:          100%;
+  padding:        1em;
+}
+
+viewer img {
+  width:          100%;
+}
+
+sidebar {
+  background-color: black;
+  transition:     background-color 3s ease;
+}

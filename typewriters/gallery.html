@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>    
+    <title>Damn Fine Typewriters</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="gallery.css" />
+    <link rel="icon" href="img/Logo.ico" />
+    <script src="gallery.js" type="text/javascript"></script>
+  </head>
+  
+  <body onload="document.getElementsByTagName('sidebar')[0].style.backgroundColor='#f0f0b0';">
+    <wrapper>
+      <header>      
+        <h1>Damn Fine Gallery</h1>
+
+
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="finds.html">Finds</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <sidebar>
+        <ul>
+          <li>Pick a Gallery:</li>
+          <li>
+            <figure>
+              <a href="#" title="The Royal Quiet De Luxe." id="royalQuietDeLuxe" onclick="changeGallery(this.id);">
+                <img src="img/RoyalQuietDeLuxeFront_sm.jpg" alt="Royal Quiet De Luxe Thumbnail" />
+                <figcaption>Royal Quiet De Luxe</figcaption>
+              </a>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <a href="#" title="The Remington Quiet-Riter Eleven." id="remingtonQuiet-RiterEleven" onclick="changeGallery(this.id);">
+                <img src="img/RemingtonQuiet-RiterElevenFront_sm.jpg" alt="Remington Quiet-Riter Eleven Thumbnail" />
+                <figcaption>Remington Quiet-Riter Eleven</figcaption>
+              </a>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <a href="#" title="The Royal 10" id="royal10" onclick="changeGallery(this.id);"> 
+                <img src="img/Royal10Front_sm.jpg" alt="Royal 10 Thumbnail" />
+                <figcaption>Royal 10</figcaption>
+              </a>
+            </figure>
+          </li>
+        </ul>
+      </sidebar>
+
+      <main>
+        <slides id="royal10_slides">
+          <ul>
+            <li><img src="img/Royal10Front_sm.jpg" id="Royal10Front" onmouseover="changeImage(this.id);" /></li>
+            <li><img src="img/Royal10FrontLeft_sm.jpg" id="Royal10FrontLeft" onmouseover="changeImage(this.id);" /></li>
+            <li><img src="img/Royal10FrontRight_sm.jpg" id="Royal10FrontRight" onmouseover="changeImage(this.id);" /></li>
+            <li><img src="img/Royal10Rear_sm.jpg" id="Royal10Rear" onmouseover="changeImage(this.id);" /></li>
+            <li><img src="img/Royal10RearLeft_sm.jpg" id="Royal10RearLeft" onmouseover="changeImage(this.id);" /></li>
+            <li><img src="img/Royal10RearRight_sm.jpg" id="Royal10RearRight" onmouseover="changeImage(this.id);" /></li>
+            <li><img src="img/Royal10FrontLeftPostClean_sm.jpg" id="Royal10FrontLeftPostClean" onmouseover="changeImage(this.id);" /></li>
+            <li><img src="img/Royal10FrontRightPostClean_sm.jpg" id="Royal10FrontRightPostClean" onmouseover="changeImage(this.id);" /></li>
+            <li><img src="img/Royal10Page_sm.jpg" id="Royal10Page" onmouseover="changeImage(this.id);" /></li>
+            <li><img src="img/Royal10TypeSpecimen_sm.jpg" id="Royal10TypeSpecimen" onmouseover="changeImage(this.id);" /></li>
+          </ul>
+        </slides>
+        
+        <slides id="royalQuietDeLuxe_slides">
+          <ul>
+            <li><img src="img/RoyalQuietDeLuxeFront_sm.jpg" id="RoyalQuietDeLuxeFront" onmouseover="changeImage(this.id);" /></li>
+            <li><img src="img/RoyalQuietDeLuxeFrontLeft_sm.jpg" id="RoyalQuietDeLuxeFrontLeft" onmouseover="changeImage(this.id);" alt="" /></li>
+            <li><img src="img/RoyalQuietDeLuxeFrontRight_sm.jpg" id="RoyalQuietDeLuxeFrontRight" onmouseover="changeImage(this.id);" alt="" /></li>
+            <li><img src="img/RoyalQuietDeLuxeRear_sm.jpg" id="RoyalQuietDeLuxeRear" onmouseover="changeImage(this.id);" alt="" /></li>
+            <li><img src="img/RoyalQuietDeLuxeTop_sm.jpg" id="RoyalQuietDeLuxeTop" onmouseover="changeImage(this.id);" alt="" /></li>
+            <li><img src="img/RoyalQuietDeLuxeSerial_sm.jpg" id="RoyalQuietDeLuxeSerial" onmouseover="changeImage(this.id);" alt="" /></li>
+            <li><img src="img/RoyalQuietDeLuxePage_sm.jpg" id="RoyalQuietDeLuxePage" onmouseover="changeImage(this.id);" alt="" /></li>
+            <li><img src="img/RoyalQuietDeLuxeCase_sm.jpg" id="RoyalQuietDeLuxeCase" onmouseover="changeImage(this.id);" alt="" /></li>
+            <li><img src="img/RoyalQuietDeLuxeTypeSpecimen_sm.jpg" id="RoyalQuietDeLuxeTypeSpecimen" onmouseover="changeImage(this.id);" alt="" /></li>
+          </ul>
+        </slides>
+        
+        <slides id="remingtonQuiet-RiterEleven_slides">
+          <ul>
+            <li><img src="img/RemingtonQuiet-RiterElevenFront_sm.jpg" id="RemingtonQuiet-RiterElevenFront" alt="" onmouseover="changeImage(this.id);" /></li>
+            <li><img src="img/RemingtonQuiet-RiterElevenFrontLeft_sm.jpg" id="RemingtonQuiet-RiterElevenFrontLeft" alt="" onmouseover="changeImage(this.id);" /></li>
+            <li><img src="img/RemingtonQuiet-RiterElevenFrontRight_sm.jpg" id="RemingtonQuiet-RiterElevenFrontRight" alt="" onmouseover="changeImage(this.id);" /></li>
+            <li><img src="img/RemingtonQuiet-RiterElevenRear_sm.jpg" id="RemingtonQuiet-RiterElevenRear" alt="" onmouseover="changeImage(this.id);" /></li>
+            <li><img src="img/RemingtonQuiet-RiterElevenCase_sm.jpg" id="RemingtonQuiet-RiterElevenCase" alt="" onmouseover="changeImage(this.id);" /></li>
+            <li><img src="img/RemingtonQuiet-RiterElevenPage_sm.jpg" id="RemingtonQuiet-RiterElevenPage" alt="" onmouseover="changeImage(this.id);" /></li>
+            <li><img src="img/RemingtonQuiet-RiterElevenTypeSpecimen_sm.jpg" id="RemingtonQuiet-RiterElevenTypeSpecimen" alt="" onmouseover="changeImage(this.id);" /></li>
+          </ul>
+        </slides>
+        
+        <viewer>
+          <img id="viewer" src="img/RoyalQuietDeLuxeFront.jpg" alt="The Royal Quiet De Luxe from the Front" />
+        </viewer>
+      </main>
+
+      <footer>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="finds.html">Finds</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="sitemap.html">Sitemap</a></li>
+          </ul>
+        </nav>
+        
+        <p>
+          &copy;2018 <a href="mailto:damnfinetypewriters@gmail.com">Jacob Gilliam</a>
+        </p>
+      </footer>
+    </wrapper>
+  </body>
+</html>
