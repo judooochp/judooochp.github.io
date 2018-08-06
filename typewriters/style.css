@@ -130,6 +130,10 @@ a:hover {
   text-decoration: underline;
 }
 
+main entry ul li {
+  list-style-position: inside;
+}
+
 /************************************* HEADER NAVIGATION ************/
 
 header nav ul {
