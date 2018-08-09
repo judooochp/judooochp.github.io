@@ -98,6 +98,14 @@ dd {
   text-indent:    2em;
 }
 
+ul {
+  font-weight:    bold;
+}
+
+li {
+  font-weight:    normal;
+}
+
 /************************************* CONTENT ELEMENTS *************/
 
 h1 {
