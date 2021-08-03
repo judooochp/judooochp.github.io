@@ -1,0 +1,336 @@
+wrapper, header, main, footer, div {
+    display: block;
+}
+brand, nav, leftside, content, rightside {
+    display: inline-block;
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #eee;
+    font-family: Arial, sans-serif;
+}
+wrapper {
+    width: 1280px;
+    height: 720px;
+    margin: 0 auto;
+}
+h3 {
+    margin-bottom: .5em;
+}
+input, select, textarea, button {
+    margin-bottom: .2em;
+}
+a, a:link, a:visited{
+    color: #33c;
+    text-decoration: none;
+}
+a:hover, a:active {
+    text-decoration: underline;
+}
+header {
+    height: 72px;
+}
+header brand {
+    width: 256px;
+    height: 72px;
+    vertical-align: bottom;
+}
+header nav {
+    width: 1024px;
+    height: 36px;
+    margin-top: 36px;
+    vertical-align: bottom;
+    overflow: hidden;
+    float: right;
+}
+header nav a, header nav a:visited, header nav a:link {
+    font-size: 1.5em;
+    color: #338;
+    font-weight: bold;
+    text-decoration: none;
+}
+header nav a:hover {
+    text-decoration: underline;
+}
+header nav ul {
+    list-style-type: none;
+    text-indent: 0;
+}
+header nav ul li {
+    float: left;
+    width: 160px;
+    text-align: center;
+}
+header nav a.current {
+    color: #55e;
+}
+main {
+    height: 612px;
+}
+leftside, rightside{
+    width: 256px;
+    height: 100%;
+    vertical-align: top;
+    padding: 5px;
+    font-size: .8em;
+}
+leftside ul, rightside ul {
+    list-style-type: none;
+    margin-bottom: 1em;
+}
+content {
+    width: 766px;
+    height: 100%;
+    border: 2px #aaa solid;
+    font-size: .8em;
+    padding: 5px;
+}
+content form {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* admin panel generally */
+#admin_panel {
+    width: 100%;
+    height: 100%;
+}
+#admin_panel ul {
+    list-style-type: square;
+}
+#admin_panel ul li {
+    list-style-position: inside;
+}
+#admin_panel a, #admin_panel a:visited, #admin_panel a:link {
+    color: #338;
+    text-decoration: none;
+}
+#admin_panel a:hover {
+    text-decoration: underline;
+}
+
+/* newcustomer.html */
+.top {
+    position: relative;
+    width: 100%;
+    height: 30%;
+    padding: 5px;
+}
+.top label, .column label {
+    display: inline-block;
+    width: 100px;
+    vertical-align: top;
+    text-align: right;
+}
+.top span {
+    margin: 5px 0;
+}
+.column {
+    display: inline-block;
+    width: 50%;
+    height: 60%;
+    vertical-align: top;
+    padding: 5px;
+}
+.bottom {
+    width: 100%;
+    height: 10%;
+    text-align: center;
+    padding: 15px;
+}
+.bottom button {
+    margin: 0 10px;
+}
+
+/* newdevicetemplate.html */
+.top_third {
+    width: 100%;
+    height: 20%;
+    border-bottom: 2px solid #aaa;
+    padding: 5px;
+}
+.top_third div, .methods div {
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+.top_third label, .methods label {
+    display: inline-block;
+    width: 100px;
+    vertical-align: top;
+    text-align: right;
+}
+.top_third > div:last-child > label, .methods > div:last-child > label {
+    display: inline-block;
+    width: 20%;
+    vertical-align: top;
+    text-align: right;
+}
+.top_third > div > textarea, .methods > div > textarea {
+    width: 75%;
+    height: 4em;
+}
+.methods {
+    position: relative;
+    width: 100%;
+    height: 30%;
+    border-bottom: 2px solid #aaa;
+    padding: 5px;
+}
+.methods > div > button.save {
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+}
+.test_points {
+    height: 45%;
+    border-bottom: 2px solid #aaa;
+    width: 100%;
+    padding: 5px;
+}
+.test_points h3 {
+    float: left;
+}
+.test_points button {
+    float: right;
+}
+.test_points input {
+    border: none;
+    padding: 1px 2px;
+}
+.save_it {
+    text-align: right;
+    padding: 5px;
+    height: 5%;
+    vertical-align: middle;
+}
+
+/* customerdevices.html */
+.top_half {
+    position: relative;
+    width: 100%;
+    height: 20%;
+    padding: 5px;
+}
+.top_half label, .column label {
+    display: inline-block;
+    width: 100px;
+    vertical-align: top;
+    text-align: right;
+}
+.top_half span {
+    margin: 5px 0;
+}
+.top_half div {
+    width: 50%;
+    height: 100%;
+    overflow: auto;
+    float: left;
+}
+#devices {
+    width: 100%;
+    height: 80%;
+    padding: 5px;
+}
+#devices table tr:last-child td {
+    text-align: left;
+}
+#devices table tr:last-child td a, #devices table tr:last-child td a:link, #devices table tr:last-child td a:visited {
+    text-decoration: none;
+    color: forestgreen;
+    font-size: .8em;
+}
+#devices table tr:last-child td a:hover {
+    text-decoration: underline;
+}
+
+
+/* calibration.html */
+#device_info, #cal_info {
+    margin: 10px 0;
+}
+#device_info > p, #cal_info {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1em;
+    width: 70%;
+}
+content table {
+    width: 100%;
+}
+content table.test_sheet {
+    width: 70%;
+}
+content table td {
+    text-align: center;
+}
+content table input {
+    width: 95%;
+}
+.foundleft {
+    width: 6em;
+}
+.pf {
+    width: 2em;
+}
+.turn {
+    width: 3em;
+}
+#standards_list {
+    float: right;
+    width: 25%;
+    border: solid 1px #555;
+}
+th {
+    font-size: .8em;
+}
+#results {
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    width: 70%;
+}
+#results label {
+    margin: 0 5px;
+}
+#complete {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    float: right;
+}
+#complete button {
+    margin: 0 5px;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+/* Firefox */
+input[type=number] {
+-moz-appearance: textfield;
+}
+#query {
+    display: block;
+    margin: 0 auto;
+}
+#remarks {
+    width: 100%;
+}
+#remarks textarea {
+    width: 100%;
+}
+
+footer {
+    height: 36px;
+    font-size: .8em;
+}
