@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>CalManager</title>
+    <link rel="stylesheet" type="text/css" href="style_rec.css">
+  </head>
+  <body>
+    <wrapper>
+
+      <header>
+        <brand>&nbsp;</brand><!--
+
+       --><nav>
+          <ul>
+            <li><a href="receiving.html">Receiving</a></li>
+            <li><a href="calibration.html">Calibration</a></li>
+            <li><a href="qa.html">QA</a></li>
+            <li><a href="return.html">Returns</a></li>
+            <li><a href="recall.html">Recall</a></li>
+            <li><a href="admin.html" class="current">Admin</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <leftside>
+          <div id="admin_panel">
+            <h3>Admin Functions</h3>
+            <ul>
+              <a href="#" title="Add New Customer">&CirclePlus;</a><span> Customers</span>
+              <li><a href="#">Contacts</a></li>
+              <li><a href="#">Addresses</a></li>
+              <li><a href="#">Devices</a></li>
+            </ul>
+            <ul>
+              <a href="#" title="Add New Device Template">&CirclePlus;</a><span> Device Templates</span>
+              <li>Test Sheets</li>
+              <li>Methods</li>
+            </ul>
+            <ul>
+              <span> Certificates</span>
+              <li>Test Records</li>
+              <li>Signoffs</li>
+            </ul>
+            <ul>
+              <a href="#" title="Add New Employees">&CirclePlus;</a><span> Employees</span>
+              <li>Training</li>
+            </ul>
+            <ul>
+              <a href="#" title="Add New Users">&CirclePlus;</a><span> Users</span>
+              <li>Permissions</li>
+            </ul>
+          </div>
+        </leftside><!--
+
+       --><content>
+            <div class="top_half">
+              <div>
+                <h3>From Customer</h3>
+                <label>Customer id</label>
+                <input type="search" />
+                <br />
+                <label>Name</label>
+                <input type="search" />
+                <button>Load Customer Devices/New Search</button>
+              </div><!--
+           --><div>
+                  <p>{{ Insert customer note from database here. For instance, this is a very long note to test how the thing scrolls. When the data is brought in from the database, we don't want the page to adjust sizes. Rather, this box should scroll. Hopefully no horizontal scroll, 'cause those are pains in the ass. So now we'll just repeat it so that it definintely takes up more space than shown, in case we change font sizes. Insert customer note from database here. For instance, this is a very long note to test how the thing scrolls. When the data is brought in from the database, we don't want the page to adjust sizes. Rather, this box should scroll. Hopefully no horizontal scroll, 'cause those are pains in the ass. So now we'll just repeat it so that it definintely takes up more space than shown, in case we change font sizes.}}</p>
+              </div>
+            </div>
+            <div id="devices">
+              <h3>Devices</h3>
+              <table>
+                <tr>
+                  <th>ID#</th><th>Manufacturer</th><th>Model</th><th>Serial No.</th><th>Description</th><th>Due Date</th><th>Active?</th><th>Check History</th>
+                </tr>
+                <tr>
+                  <td><a href="#" title="Go To Edit Device Page">PG-002</a></td><td>Ashcroft</td><td>1259 (60psi)</td><td>NA</td><td>Analog Pressure Gauge, 60 psig, 4.5 inch dial</td><td>2/22/22</td><td>&check;</td><td><button>PG-002 History</button></td>
+                </tr>
+                <tr>
+                  <td colspan="8"><a href="#">&CirclePlus; Create new device from existing template</a></td>
+                </tr>
+              </table>
+            </div>
+        </content><!--
+
+       --><rightside>
+         <p>inspirational quote of the week</p>
+        </rightside>
+      </main>
+
+      <footer>&copy; The Evil Usses</footer>
+    </body>
+  </wrapper>
+</html>

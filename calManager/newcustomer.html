@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>CalManager</title>
+    <link rel="stylesheet" type="text/css" href="style_rec.css">
+  </head>
+  <body>
+    <wrapper>
+
+      <header>
+        <brand>&nbsp;</brand><!--
+
+       --><nav>
+          <ul>
+            <li><a href="receiving.html">Receiving</a></li>
+            <li><a href="calibration.html">Calibration</a></li>
+            <li><a href="qa.html">QA</a></li>
+            <li><a href="return.html">Returns</a></li>
+            <li><a href="recall.html">Recall</a></li>
+            <li><a href="admin.html" class="current">Admin</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <leftside>
+          <div id="admin_panel">
+            <h3>Admin Functions</h3>
+            <ul>
+              <a href="#" title="Add New Customer">&CirclePlus;</a><span> Customers</span>
+              <li><a href="#">Contacts</a></li>
+              <li><a href="#">Addresses</a></li>
+              <li><a href="#">Devices</a></li>
+            </ul>
+            <ul>
+              <a href="#" title="Add New Device Template">&CirclePlus;</a><span> Device Templates</span>
+              <li>Test Sheets</li>
+              <li>Methods</li>
+            </ul>
+            <ul>
+              <span> Certificates</span>
+              <li>Test Records</li>
+              <li>Signoffs</li>
+            </ul>
+            <ul>
+              <a href="#" title="Add New Employees">&CirclePlus;</a><span> Employees</span>
+              <li>Training</li>
+            </ul>
+            <ul>
+              <a href="#" title="Add New Users">&CirclePlus;</a><span> Users</span>
+              <li>Permissions</li>
+            </ul>
+          </div>
+        </leftside><!--
+
+       --><content>
+          <form method="POST" action="#">
+            <div class="top">
+              <h3>Add New Customer</h3>
+              <label>Customer id *</label>
+              <input type="text" required />
+              <br />
+              <label>Name *</label>
+              <input type="text" required />
+              <br />
+              <label>Note</label>
+              <textarea></textarea>
+            </div>
+            <div class="column">
+              <h3>Main Contact</h3>
+              <label>Title *</label>
+              <input type="text" required />
+              <br />
+              <label>Name</label>
+              <input type="text" />
+              <br />
+              <label>Phone 1</label>
+              <input type="tel" />
+              <br />
+              <label>Phone 2</label>
+              <input type="tel" />
+              <br />
+              <label>Email</label>
+              <input type="email" />
+              <br />
+              <label>Note</label>
+              <textarea></textarea>
+            </div><!--
+         --><div class="column">
+              <h3>Main Contact Address</h3>
+              <label>Address Type</label>
+              <select name="address_type">
+                <option name="ship_to">Ship To</option>
+                <option name="bill_to">Bill To</option>
+                <option name="remit_to">Remit To</option>
+                <option name="recalls">Recalls</option>
+                <option name="certificates">Certificates</option>
+              </select>
+              <br />
+              <label>Address Name</label>
+              <input type="text" />
+              <br />
+              <label>Street *</label>
+              <input type="text" required />
+              <br />
+              <label></label>
+              <input type="text" />
+              <br />
+              <label></label>
+              <input type="text" />
+              <br />
+              <label>City *</label>
+              <input type="text" required />
+              <br />
+              <label>State *</label>
+              <input type="text" required />
+              <br />
+              <label>ZIP *</label>
+              <input type="text" required />
+              <br />
+              <label>Note</label>
+              <textarea></textarea>
+            </div>
+            <div class="bottom">
+              <span>Verify New Customer Information Before Commiting Data</span>
+              <br />
+              <button>Save Customer and Exit</button><button>Save Customer and Add New Equipment</button></button></div>
+          </form>
+        </content><!--
+
+       --><rightside>
+         <p>inspirational quote of the week</p>
+        </rightside>
+      </main>
+
+      <footer>&copy; The Evil Usses</footer>
+    </body>
+  </wrapper>
+</html>
