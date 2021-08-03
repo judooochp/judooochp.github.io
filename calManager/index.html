@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CalManager</title>
+    <link rel="stylesheet" type="text/css" href="style_rec.css">
+  </head>
+  <body>
+    <wrapper>
+
+      <header>
+        <brand>&nbsp;</brand><!--
+       --><nav>
+          <ul>
+            <li><a href="receiving.html">Receiving</a></li>
+            <li><a href="calibration.html">Calibration</a></li>
+            <li><a href="qa.html">QA</a></li>
+            <li><a href="return.html">Returns</a></li>
+            <li><a href="recall.html">Recall</a></li>
+            <li><a href="admin.html" class="current">Admin</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <leftside>
+            <h3>Customer Info</h3>
+  <!-- non-navigation UL for customer information display --><ul>
+            <li>{{company_name}}</li>
+            <li>{{contact_name}}</li>
+            <li>{{contact_phone}}</li>
+            <li>{{contact_email}}</li>
+          </ul>
+        </leftside><!--
+       --><content>
+<a href="https://judooochp.github.io/calManager/calibration.html">Calibration</a>
+<a href="https://judooochp.github.io/calManager/customerdevices.html">Customer Devices</a>
+<a href="https://judooochp.github.io/calManager/employees.html">Employees</a>
+<a href="https://judooochp.github.io/calManager/exampleTable.html">Example Table</a>
+<a href="https://judooochp.github.io/calManager/newcustomer.html">New Customer</a>
+<a href="https://judooochp.github.io/calManager/newdevicetemplate.html">New Device Template</a>
+<a href="https://judooochp.github.io/calManager/receiving.html">Receiving</a>
+<a href="https://judooochp.github.io/calManager/users.html">Users</a>
+
+        </content><!--
+       --><rightside>
+          <h3>WIP Devices</h3>
+          <ul><span>{{Customer}}</span>
+            <li>{{ID}}, {{mfr}}, {{model}}</li>
+            <li>{{ID}}, {{mfr}}, {{model}}</li>
+            <li>{{ID}}, {{mfr}}, {{model}}</li>
+            <li>{{ID}}, {{mfr}}, {{model}}</li>
+          </ul>
+          <ul><span>{{Customer}}</span>
+            <li>{{ID}}, {{mfr}}, {{model}}</li>
+            <li>{{ID}}, {{mfr}}, {{model}}</li>
+            <li>{{ID}}, {{mfr}}, {{model}}</li>
+            <li>{{ID}}, {{mfr}}, {{model}}</li>
+          </ul>
+        </rightside>
+      </main>
+
+      <footer>&copy; The Evil Usses</footer>
+    </body>
+  </wrapper>
+</html>
